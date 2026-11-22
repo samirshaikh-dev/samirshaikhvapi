@@ -1,9 +1,10 @@
 /**
- * meelTe — Schema.org JSON-LD Structured Data Generators & Entity Graph
- * Conforms to Google Rich Results standards and AEO/GEO (Answer Engine Optimization).
- * Single Source of Truth: src/config/site.js
- * 
- * Principles: accurate to page content, @id cross-references, JSON-LD only, no fabricated markup.
+ * Vapi freelance portfolio — Schema.org JSON-LD Structured Data Generators
+ * Aligned with docs/SEO.MD §8 (Structured Data).
+ *
+ * Truthful information only. No invented street address, telephone number,
+ * office hours, aggregate ratings, reviews, geographic coordinates, or client
+ * count. Avoids misleading organization markup for an individual freelancer.
  */
 
 import {
@@ -13,25 +14,12 @@ import {
   APP_DESCRIPTION,
   APP_URL,
   SUPPORT_EMAIL,
-  HR_EMAIL,
-  CONTACT_PHONE,
-  PLAY_STORE_URL,
-  APP_STORE_URL,
   SAME_AS_LINKS,
+  OG_IMAGE_PATH,
 } from "../../config/site";
-import {
-  TARGET_CITIES,
-  ALL_COVERED_AREAS,
-  PILLARS,
-} from "../../constants/app-constants";
-import { OG_IMAGE_PATH } from "./metadata";
 
 export const SAME_AS = SAME_AS_LINKS;
 
-/**
- * Brand logo referenced by Organization / publisher nodes.
- * Served from `src/app/icon.png` (512×512), which Next.js exposes at `/icon.png`.
- */
 export const BRAND_LOGO_PATH = "/icon.png";
 
 function toAbsUrl(path = "") {
@@ -47,126 +35,138 @@ function toAbsImage(image = OG_IMAGE_PATH) {
 }
 
 /**
- * Long-tail, intent-rich search phrases associated with meelTe.
- * Strengthens GEO (Generative Engine Optimization) entity relationships and AI answer engine citations.
+ * Long-tail, intent-rich search phrases for Vapi web development.
+ * Strengthens GEO entity relationships and AI answer engine citations.
  */
 export const LONGTAIL_KEYWORDS = [
-  "hyperlocal community platform",
-  "community app for local neighborhoods",
-  "discover local events in India",
-  "neighborhood meetups and gatherings",
-  "connect with neighbors in new city",
-  "meet like-minded people near me",
-  "promote local business neighborhood",
-  "local shop marketing platform India",
-  "hyperlocal discovery app India",
-  "find local food and dining nearby",
-  "neighborhood fashion boutiques",
-  "local wellness and fitness studios",
-  "community-moderated local platform",
-  "privacy-first community app",
-  "location never sold or shared app",
-  "create community events near me",
-  "weekend events near me",
-  "neighborhood artisan foods and cafes",
-  "local commerce without middleman fees",
-  "meelTe app download Google Play Store",
+  "website designer in Vapi",
+  "freelance web developer in Vapi Gujarat",
+  "website development services in Vapi",
+  "industrial website development Vapi GIDC",
+  "custom web application development Vapi",
+  "business website design Vapi Gujarat",
+  "AI chatbot development Vapi",
+  "e-commerce website development Vapi",
+  "website developer near Vapi GIDC",
+  "clinic website design in Vapi",
+  "school website development in Vapi",
+  "workshop website design in Vapi",
 ];
 
 /**
- * Voice-search and conversational questions (AEO), framed around the problems
- * prospective community members, merchants and event hosts ask.
+ * Voice-search and conversational questions (AEO), framed around problems
+ * prospective Vapi business clients ask.
  */
 export const VOICE_QUERIES = [
-  "what is meelTe and how does it work",
-  "how can I find local events happening near me this weekend",
-  "where can I meet like-minded people after moving to a new city in India",
-  "how can local merchants promote products and services on meelTe",
-  "how does meelTe protect user location and data privacy",
-  "how do I organize a community meetup or neighborhood gathering on meelTe",
-  "which app helps me discover local artisan food and fashion boutiques nearby",
-  "is meelTe free for community members and local organizers",
+  "what is the best website designer in Vapi Gujarat",
+  "how can I find a freelance web developer near Vapi GIDC",
+  "where can I get industrial website development in Vapi",
+  "how much does a business website cost in Vapi Gujarat",
+  "who builds custom web applications in Vapi",
+  "which developer makes e-commerce websites in Vapi",
+  "is a freelance web developer in Vapi affordable for small business",
 ];
 
 /**
- * Industries and domains meelTe bridges
+ * Industries and business types served in Vapi and nearby areas
+ * (docs/TARGET-CUSTOMER.md §3).
  */
 export const INDUSTRIES_SERVED = [
-  "Hyperlocal Commerce",
-  "Community Building & Social Networking",
-  "Community Event Hosting",
-  "SMB Local Marketing & Advertising",
-  "Food & Beverage Discovery",
-  "Retail & Local Boutiques",
-  "Home & Professional Services",
-  "Health & Wellness Centers",
+  "Manufacturing & Industrial",
+  "Healthcare & Clinics",
+  "Educational Institutions",
+  "Workshops & Service Businesses",
+  "Retail & Commerce",
+  "Startups & Growing Businesses",
 ];
 
 /**
- * Core Hyperlocal Services offered by meelTe
+ * Core services offered by the freelance developer (docs/TARGET-CUSTOMER.md §3).
  */
-export const meelTe_SERVICES = [
+export const SERVICES = [
   {
-    id: "local-offers",
-    name: "Nearby Shop Offers",
-    category: "Discovery",
+    id: "business-website",
+    name: "Business Website Design",
+    category: "Web Design",
     description:
-      "Browse time-boxed offers from nearby shops and service businesses, each with a price or discount and a fixed run of dates.",
-    url: toAbsUrl("/for-merchants"),
+      "Modern, professional websites for local businesses in Vapi and nearby areas — mobile-friendly, fast, and built to convert visitors into inquiries.",
+    url: toAbsUrl("/services#business-website"),
   },
   {
-    id: "local-events",
-    name: "Community Event Hosting",
-    category: "Events",
+    id: "industrial-website",
+    name: "Industrial Website Development",
+    category: "Web Development",
     description:
-      "Residents, clubs and organisers publish local events with a joining cost, and approve attendees through join requests that state group size.",
-    url: toAbsUrl("/how-it-works#roles"),
+      "Product catalog websites and digital catalogs for Vapi GIDC manufacturers, engineering companies, and industrial suppliers.",
+    url: toAbsUrl("/services#industrial-website"),
   },
   {
-    id: "community-connection",
-    name: "Neighborhood Community & Chat",
-    category: "Community",
+    id: "web-application",
+    name: "Custom Web Application Development",
+    category: "Web Applications",
     description:
-      "Connect with people you meet locally through friends, follows, one-to-one chat, and audio or video calls in a privacy-respecting environment.",
-    url: toAbsUrl("/how-it-works#roles"),
+      "Custom web applications, backend systems, and workflow automation for growing businesses and startups in Gujarat.",
+    url: toAbsUrl("/services#web-application"),
+  },
+  {
+    id: "ai-chatbot",
+    name: "AI Chatbot Development",
+    category: "AI & Automation",
+    description:
+      "Intelligent customer assistants that understand your business, for clinics, retailers, and service businesses in Vapi.",
+    url: toAbsUrl("/services#ai-chatbot"),
+  },
+  {
+    id: "ecommerce-website",
+    name: "E-commerce Website Development",
+    category: "E-commerce",
+    description:
+      "Online storefronts and product catalogs with convenient online inquiries for local retailers and distributors.",
+    url: toAbsUrl("/services#ecommerce-website"),
   },
 ];
 
 /**
- * Platform service nodes for the Organisation's OfferCatalog.
+ * Returns Root Graph JSON-LD array for layout / homepage.
+ * Emits Person, WebSite, and ProfessionalService schemas with @id cross-references.
  *
- * These were previously emitted as `Offer` nodes with `price: "0"` and
- * `unitText: "Free Community Membership"`, asserting a price the business has not
- * published (Code Review Graph, docs/target_customer.md §4.4). They are now plain
- * `Service` nodes: they describe what meelTe does, and claim nothing about cost.
- */
-const PLATFORM_SERVICE_NODES = meelTe_SERVICES.map((service) => ({
-  "@type": "Service",
-  name: service.name,
-  serviceType: service.name,
-  category: service.category,
-  description: service.description,
-  url: service.url,
-  provider: {
-    "@id": `${APP_URL}#organization`,
-  },
-  // `TARGET_CITIES` currently holds the country token ("India"), while the site copy and
-  // the field-team onboarding narrative name Bengaluru, Gaya and Ranchi. Appending
-  // ", India" unconditionally produced the malformed value "India, India", so the
-  // qualifier is only added when the token is not already the country. See the note on
-  // TARGET_CITIES in src/constants/app-constants.js for the confirmed coverage model.
-  areaServed: TARGET_CITIES.map((city) => ({
-    "@type": city === "India" ? "Country" : "AdministrativeArea",
-    name: city === "India" || city.includes("India") ? city : `${city}, India`,
-  })),
-}));
-
-/**
- * Returns Root Graph JSON-LD array for layout.jsx / homepage.
- * Emits WebSite, Organization, MobileApplication schemas with @id cross-references.
+ * Docs/SEO.MD §8: Person, WebSite, ProfessionalService or LocalService where eligible.
+ * Avoids misleading organization markup for an individual freelancer — no
+ * Organization node with invented address/phone/ratings.
  */
 export function getRootJsonLd() {
   return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": `${APP_URL}#person`,
+      name: SITE_NAME,
+      jobTitle: "Freelance Website Developer & AI Developer",
+      description: APP_DESCRIPTION,
+      url: APP_URL,
+      image: toAbsImage(BRAND_LOGO_PATH),
+      email: SUPPORT_EMAIL,
+      sameAs: SAME_AS,
+      knowsAbout: INDUSTRIES_SERVED,
+      location: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Vapi",
+          addressRegion: "Gujarat",
+          addressCountry: "IN",
+        },
+      },
+      workLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Vapi",
+          addressRegion: "Gujarat",
+          addressCountry: "IN",
+        },
+      },
+    },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -178,84 +178,80 @@ export function getRootJsonLd() {
       inLanguage: "en-IN",
       keywords: LONGTAIL_KEYWORDS.join(", "),
       publisher: {
-        "@id": `${APP_URL}#organization`,
+        "@id": `${APP_URL}#person`,
       },
-      speakable: {
-        "@type": "SpeakableSpecification",
-        cssSelector: ["h1", "h2", "p"],
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${APP_URL}/search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
       },
     },
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": `${APP_URL}#organization`,
-      name: SITE_NAME,
-      alternateName: "meelTe Community Platform",
-      url: APP_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: toAbsImage(BRAND_LOGO_PATH),
-        width: 512,
-        height: 512,
-      },
-      image: toAbsImage(OG_IMAGE_PATH),
-      email: SUPPORT_EMAIL,
-      telephone: CONTACT_PHONE,
-      slogan: APP_TAGLINE,
+      "@type": "ProfessionalService",
+      "@id": `${APP_URL}#service`,
+      name: `${SITE_NAME} — Freelance Web Development`,
+      alternateName: APP_NAME,
       description: APP_DESCRIPTION,
-      sameAs: SAME_AS,
-      inLanguage: ["en-IN", "hi", "kn"],
-      areaServed: {
-        "@type": "Country",
-        name: "India",
-      },
-      knowsAbout: INDUSTRIES_SERVED,
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "meelTe Platform Features & Services",
-        itemListElement: PLATFORM_SERVICE_NODES,
-      },
-      contactPoint: [
+      url: APP_URL,
+      image: toAbsImage(OG_IMAGE_PATH),
+      serviceType: "Freelance Website Development & Digital Solutions",
+      areaServed: [
         {
-          "@type": "ContactPoint",
-          contactType: "customer support",
-          email: SUPPORT_EMAIL,
-          availableLanguage: ["English", "Hindi", "Kannada"],
-          areaServed: "IN",
+          "@type": "City",
+          name: "Vapi",
         },
         {
-          "@type": "ContactPoint",
-          contactType: "human resources / recruitment",
-          email: HR_EMAIL,
-          availableLanguage: ["English", "Hindi"],
-          areaServed: "IN",
+          "@type": "City",
+          name: "Dungra",
+        },
+        {
+          "@type": "City",
+          name: "Pardi",
+        },
+        {
+          "@type": "City",
+          name: "Sarigam",
+        },
+        {
+          "@type": "City",
+          name: "Umbergaon",
+        },
+        {
+          "@type": "City",
+          name: "Silvassa",
+        },
+        {
+          "@type": "City",
+          name: "Daman",
         },
       ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "MobileApplication",
-      "@id": `${APP_URL}#mobileapp`,
-      name: "meelTe: Local Community & Events",
-      operatingSystem: "Android, iOS",
-      applicationCategory: "CommunityApplication",
-      installUrl: PLAY_STORE_URL,
-      downloadUrl: PLAY_STORE_URL,
-      // Both live listings point at the same app, so neither platform is favoured in
-      // the entity graph (`operatingSystem` above still names both).
-      sameAs: [PLAY_STORE_URL, APP_STORE_URL],
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "INR",
-        availability: "https://schema.org/InStock",
-      },
-      description:
-        "Download meelTe on Android or iPhone to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
       inLanguage: "en-IN",
-      isAccessibleForFree: true,
-      publisher: {
-        "@id": `${APP_URL}#organization`,
+      provider: {
+        "@id": `${APP_URL}#person`,
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Freelance Web Development Services",
+        itemListElement: SERVICES.map((service) => ({
+          "@type": "Service",
+          name: service.name,
+          serviceType: service.name,
+          category: service.category,
+          description: service.description,
+          url: service.url,
+          provider: {
+            "@id": `${APP_URL}#person`,
+          },
+          areaServed: {
+            "@type": "City",
+            name: "Vapi",
+          },
+          inLanguage: "en-IN",
+        })),
       },
     },
   ];
@@ -264,7 +260,7 @@ export function getRootJsonLd() {
 /**
  * BreadcrumbList Schema generator.
  * Keeps breadcrumb navigation visually and structurally synchronized.
- * 
+ *
  * @param {Array<{ name: string; path: string }>} items - List of breadcrumb items
  */
 export function getBreadcrumbsJsonLd(items = []) {
@@ -284,7 +280,7 @@ export function getBreadcrumbsJsonLd(items = []) {
 /**
  * FAQPage Schema generator for rich answer-engine optimization (AEO/GEO).
  * Only use when FAQs are actually rendered on the page.
- * 
+ *
  * @param {Array<{ question: string; answer: string }>} faqs
  */
 export function getFaqPageJsonLd(faqs = []) {
@@ -307,239 +303,89 @@ export function getFaqPageJsonLd(faqs = []) {
 }
 
 /**
- * Event Schema generator for meelTe's community gatherings (/events/[id]).
+ * WebPage schema with optional speakable
  */
-export function getEventJsonLd(event) {
-  if (!event) return null;
-
-  const url = toAbsUrl(event.slug ? `/events/${event.slug}` : event.id ? `/events/${event.id}` : "/events");
-
+export function getWebPageJsonLd({
+  name,
+  description,
+  path,
+  speakableSelectors = ["h1", "h2", "p"],
+} = {}) {
+  if (!name || !path) return null;
+  const url = toAbsUrl(path);
   return {
     "@context": "https://schema.org",
-    "@type": "Event",
-    name: event.name,
-    description: event.description,
-    startDate: event.startDate,
-    ...(event.endDate && { endDate: event.endDate }),
-    eventAttendanceMode: event.isOnline
-      ? "https://schema.org/OnlineEventAttendanceMode"
-      : "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
+    "@type": "WebPage",
+    name,
+    description,
+    url,
     inLanguage: "en-IN",
-    location: event.isOnline
-      ? {
-        "@type": "VirtualLocation",
-        url: event.url || url,
-      }
-      : {
-        "@type": "Place",
-        name: event.locationName || "Local Community Venue",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: event.city || "India",
-          addressCountry: "IN",
-          ...(event.address && { streetAddress: event.address }),
-        },
-      },
-    image: toAbsImage(event.image),
-    organizer: {
-      "@type": "Organization",
-      name: event.organizerName || SITE_NAME,
+    isPartOf: { "@id": `${APP_URL}#website` },
+    about: { "@id": `${APP_URL}#person` },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: speakableSelectors,
+    },
+  };
+}
+
+/**
+ * ContactPage Schema for /contact.
+ *
+ * `description` is passed in from the page's meta description so the structured
+ * data and the meta description are one string. Truthful contact info only —
+ * no invented phone number or street address (docs/SEO.MD §8).
+ */
+export function getContactPageJsonLd({ description } = {}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${APP_URL}/contact#webpage`,
+    name: `Contact ${SITE_NAME}`,
+    url: toAbsUrl("/contact"),
+    description:
+      description ||
+      `Contact ${SITE_NAME}, freelance website developer in Vapi, Gujarat, for business websites, web applications, and AI solutions.`,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": `${APP_URL}#website` },
+    about: { "@id": `${APP_URL}#person` },
+    mainEntity: {
+      "@id": `${APP_URL}#person`,
+      name: SITE_NAME,
+      email: SUPPORT_EMAIL,
       url: APP_URL,
-      "@id": `${APP_URL}#organization`,
-    },
-    offers: {
-      "@type": "Offer",
-      price: event.price || "0",
-      priceCurrency: event.currency || "INR",
-      availability: "https://schema.org/InStock",
-      url,
-    },
-    url,
-  };
-}
-
-/**
- * Product schema for a public meelTe ad returned by web_get_ad.
- * Only public fields are accepted, and a price is emitted only when the API
- * actually provides final_price. Discount-only ads must not receive an
- * invented price in structured data.
- */
-export function getPublicAdJsonLd(ad) {
-  if (!ad?.id || !ad?.productName || ad.hasEnded) return null;
-
-  const url = toAbsUrl(`/ads/${encodeURIComponent(ad.id)}`);
-  const hasPrice = typeof ad.finalPrice === "number" && Number.isFinite(ad.finalPrice) && ad.finalPrice >= 0;
-  const hasGeo = typeof ad.lat === "number" && typeof ad.lng === "number";
-  const hasAddress = Boolean(ad.locationName || ad.city || ad.state || ad.country);
-  const sellerName = ad.brandName || "Local Merchant";
-
-  const sellerNode = {
-    "@type": "LocalBusiness",
-    name: sellerName,
-    ...(hasAddress && {
-      address: {
-        "@type": "PostalAddress",
-        ...(ad.locationName && { streetAddress: ad.locationName }),
-        ...(ad.city && { addressLocality: ad.city }),
-        ...(ad.state && { addressRegion: ad.state }),
-        ...(ad.country && { addressCountry: ad.country || "IN" }),
-      },
-    }),
-    ...(hasGeo && {
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: ad.lat,
-        longitude: ad.lng,
-      },
-    }),
-  };
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: ad.productName,
-    ...(ad.description && { description: ad.description }),
-    ...(ad.photoUrl && { image: [toAbsImage(ad.photoUrl)] }),
-    ...(ad.brandName && {
-      brand: {
-        "@type": "Brand",
-        name: ad.brandName,
-      },
-    }),
-    ...(ad.category && { category: ad.category }),
-    url,
-    offers: {
-      "@type": "Offer",
-      url,
-      priceCurrency: "INR",
-      ...(hasPrice && { price: ad.finalPrice }),
-      ...(ad.startAt && { validFrom: ad.startAt }),
-      ...(ad.endAt && { priceValidUntil: ad.endAt }),
-      availability: "https://schema.org/InStock",
-      seller: sellerNode,
-      ...((hasAddress || hasGeo) && {
-        availableAtOrFrom: {
-          "@type": "Place",
-          name: ad.brandName || ad.locationName || "Store Location",
-          ...(hasAddress && {
-            address: {
-              "@type": "PostalAddress",
-              ...(ad.locationName && { streetAddress: ad.locationName }),
-              ...(ad.city && { addressLocality: ad.city }),
-              ...(ad.state && { addressRegion: ad.state }),
-              ...(ad.country && { addressCountry: ad.country || "IN" }),
-            },
-          }),
-          ...(hasGeo && {
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: ad.lat,
-              longitude: ad.lng,
-            },
-          }),
-        },
-      }),
     },
   };
 }
 
 /**
- * Event schema for a public meelTe event returned by web_get_event.
- * The organizer is the public host name only; internal user ids never enter
- * this object.
+ * AboutPage Schema for /about.
+ *
+ * `name` matches the visible `<h1>` and `description` is the same string as the
+ * page's meta description, so the structured data cannot claim more than the
+ * page says (docs/SEO.MD §15).
  */
-export function getPublicEventJsonLd(event) {
-  if (!event?.id || !event?.title || !event?.startTime || event.hasEnded) return null;
-
-  const url = toAbsUrl(`/events/${encodeURIComponent(event.id)}`);
-  const address = {
-    "@type": "PostalAddress",
-    ...(event.address && { streetAddress: event.address }),
-    ...(event.city && { addressLocality: event.city }),
-    ...(event.state && { addressRegion: event.state }),
-    addressCountry: event.country || "IN",
-  };
-  const hasCoordinates =
-    typeof event.lat === "number" &&
-    Number.isFinite(event.lat) &&
-    typeof event.lng === "number" &&
-    Number.isFinite(event.lng);
-
+export function getAboutPageJsonLd({ description } = {}) {
   return {
     "@context": "https://schema.org",
-    "@type": "Event",
-    name: event.title,
-    ...(event.description && { description: event.description }),
-    ...(event.coverUrl && { image: [toAbsImage(event.coverUrl)] }),
-    startDate: event.startTime,
-    ...(event.endTime && { endDate: event.endTime }),
-    eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: {
-      "@type": "Place",
-      ...(event.locationName && { name: event.locationName }),
-      address,
-      ...(hasCoordinates && {
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: event.lat,
-          longitude: event.lng,
-        },
-      }),
-    },
-    ...(event.creatorName && {
-      organizer: {
-        "@type": "Person",
-        name: event.creatorName,
-      },
-    }),
-    offers: {
-      "@type": "Offer",
-      url,
-      price: typeof event.cost === "number" && event.cost >= 0 ? event.cost : 0,
-      priceCurrency: "INR",
-      availability: "https://schema.org/InStock",
-    },
-    ...(event.cost === 0 && { isAccessibleForFree: true }),
-    url,
-  };
-}
-
-/**
- * LocalBusiness Schema generator for neighborhood merchants and shops.
- */
-export function getLocalBusinessJsonLd(business) {
-  if (!business) return null;
-
-  const url = business.url ? toAbsUrl(business.url) : toAbsUrl("/merchant");
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: business.name,
-    description: business.description,
-    image: toAbsImage(business.image),
-    ...(business.phone && { telephone: business.phone }),
-    ...(business.email && { email: business.email }),
-    priceRange: business.priceRange || "₹₹",
-    url,
+    "@type": "AboutPage",
+    "@id": `${APP_URL}/about#webpage`,
+    name: `About ${SITE_NAME}`,
+    url: toAbsUrl("/about"),
+    description:
+      description ||
+      `${SITE_NAME} is a freelance website developer based in Vapi, Gujarat, building modern business websites, industrial websites, web applications, and AI-powered experiences for growing businesses.`,
     inLanguage: "en-IN",
-    address: {
-      "@type": "PostalAddress",
-      ...(business.address && { streetAddress: business.address }),
-      addressLocality: business.city || "India",
-      addressCountry: "IN",
-    },
-    areaServed: {
-      "@type": business.city ? "City" : "Country",
-      name: business.city || "India",
+    isPartOf: { "@id": `${APP_URL}#website` },
+    about: { "@id": `${APP_URL}#person` },
+    mainEntity: {
+      "@id": `${APP_URL}#person`,
     },
   };
 }
 
 /**
- * CollectionPage + ItemList Schema for listings (offers, events, people).
+ * CollectionPage + ItemList Schema for listings (services, projects, areas).
  */
 export function getCollectionPageJsonLd({ name, description, path, items = [] } = {}) {
   if (!name || !path) return null;
@@ -564,160 +410,6 @@ export function getCollectionPageJsonLd({ name, description, path, items = [] } 
         name: item.name,
         url: toAbsUrl(item.path),
       })),
-    },
-  };
-}
-
-/**
- * Article/BlogPosting schema for blog posts
- */
-export function getArticleJsonLd(article = {}) {
-  if (!article?.title || !article?.url) return null;
-
-  const url = toAbsUrl(article.url);
-  const image = toAbsImage(article.image);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: article.title,
-    description: article.description,
-    image: [image],
-    url,
-    datePublished: article.datePublished,
-    dateModified: article.dateModified || article.datePublished,
-    inLanguage: "en-IN",
-    author: article.author
-      ? { "@type": "Person", name: article.author }
-      : { "@type": "Organization", name: SITE_NAME, "@id": `${APP_URL}#organization` },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      "@id": `${APP_URL}#organization`,
-      logo: {
-        "@type": "ImageObject",
-        url: toAbsImage(BRAND_LOGO_PATH),
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
-    },
-    isAccessibleForFree: true,
-  };
-}
-
-/**
- * Person schema for authors/leadership
- */
-export function getPersonJsonLd(person = {}) {
-  if (!person?.name) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: person.name,
-    ...(person.jobTitle && { jobTitle: person.jobTitle }),
-    ...(person.description && { description: person.description }),
-    ...(person.image && { image: toAbsImage(person.image) }),
-    worksFor: person.worksFor
-      ? person.worksFor
-      : { "@type": "Organization", name: SITE_NAME, "@id": `${APP_URL}#organization` },
-    sameAs: Array.isArray(person.sameAs) ? person.sameAs.filter(Boolean) : undefined,
-    url: person.url ? toAbsUrl(person.url) : undefined,
-    inLanguage: "en-IN",
-  };
-}
-
-/**
- * WebPage schema with optional speakable
- */
-export function getWebPageJsonLd({ name, description, path, speakableSelectors = ["h1", "h2", "p"] } = {}) {
-  if (!name || !path) return null;
-  const url = toAbsUrl(path);
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name,
-    description,
-    url,
-    inLanguage: "en-IN",
-    isPartOf: { "@id": `${APP_URL}#website` },
-    about: { "@id": `${APP_URL}#organization` },
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: speakableSelectors,
-    },
-  };
-}
-
-/**
- * ContactPage Schema for /contact.
- *
- * `description` is passed in from `CONTACT_DESCRIPTION` so the structured data and
- * the meta description are one string. The previous hardcoded value ("community
- * support, merchant onboarding, and local event partnerships") appeared nowhere on
- * the page, which is the drift AI_RULE.md §2.3 exists to prevent.
- *
- * The page is a `ContactPage` about the organisation, so the node carries `@id`,
- * `isPartOf` (the root `WebSite`) and `about` (`Organization`) the same way
- * `/about` does. `mainEntity` keeps the contactable properties — email, telephone,
- * URL — alongside the `@id` reference, because a crawler reading this page alone
- * should still be able to resolve the support address; the full Organization node
- * comes from the root graph in layout.js.
- */
-export function getContactPageJsonLd({ description } = {}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "@id": `${APP_URL}/contact#webpage`,
-    name: `Contact ${SITE_NAME}`,
-    url: toAbsUrl("/contact"),
-    description:
-      description ||
-      `Contact ${SITE_NAME} for app support, merchant onboarding, event partnerships or feedback.`,
-    inLanguage: "en-IN",
-    isPartOf: { "@id": `${APP_URL}#website` },
-    about: { "@id": `${APP_URL}#organization` },
-    mainEntity: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      "@id": `${APP_URL}#organization`,
-      email: SUPPORT_EMAIL,
-      telephone: CONTACT_PHONE,
-      url: APP_URL,
-    },
-  };
-}
-
-/**
- * AboutPage Schema for /about.
- *
- * `name` matches the visible `<h1>` ("About meelTe") and `description` is the same
- * string as the page's meta description, so the structured data cannot claim more
- * than the page says. The previous values ("Our Mission & Community Story",
- * "local information overload and urban isolation") appeared nowhere on the page —
- * they came from an internal problem statement — which
- * violates AI_RULE.md §2.3.
- *
- * `AboutPage` with `mainEntity → Organization` is the correct type for a company
- * about page; the Organization node itself comes from the root graph in layout.js,
- * so it is referenced by `@id` rather than repeated.
- */
-export function getAboutPageJsonLd({ description } = {}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "@id": `${APP_URL}/about#webpage`,
-    name: `About ${SITE_NAME}`,
-    url: toAbsUrl("/about"),
-    description:
-      description ||
-      `${SITE_NAME} is a hyperlocal community app for India: nearby shop offers, local events you can ask to join, and the people you follow.`,
-    inLanguage: "en-IN",
-    isPartOf: { "@id": `${APP_URL}#website` },
-    about: { "@id": `${APP_URL}#organization` },
-    mainEntity: {
-      "@id": `${APP_URL}#organization`,
     },
   };
 }
@@ -748,91 +440,6 @@ export function getJsonLdScript(jsonLd) {
 }
 
 /**
- * Generates Schema.org JobPosting structured data for an active opening.
- * Conforms to Google Search Central JobPosting rich result standards.
- */
-export function getJobPostingJsonLd(job) {
-  if (!job || !job.title) return null;
-
-  const jobUrl = toAbsUrl(`/careers/${job.slug || job.id}`);
-
-  // Map employment type string to schema.org enum
-  const empMap = {
-    "full-time": "FULL_TIME",
-    "part-time": "PART_TIME",
-    contract: "CONTRACTOR",
-    internship: "INTERN",
-  };
-  const normalizedType = (job.employmentType || "full-time").toLowerCase();
-  const employmentType = empMap[normalizedType] || "FULL_TIME";
-
-  const node = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: job.title,
-    description: job.description || job.responsibilities || `${job.title} position at meelTe.`,
-    identifier: {
-      "@type": "PropertyValue",
-      name: SITE_NAME,
-      value: job.id,
-    },
-    datePosted: job.createdAt,
-    validThrough: job.deadline || undefined,
-    employmentType,
-    // Applications are submitted on-site via /careers/[slug]/apply.
-    directApply: true,
-    hiringOrganization: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      sameAs: APP_URL,
-      logo: toAbsImage(BRAND_LOGO_PATH),
-    },
-    url: jobUrl,
-  };
-
-  // The department is the closest real signal we hold for a job category.
-  if (job.department) {
-    node.occupationalCategory = job.department;
-  }
-
-  // Workplace & Location mapping
-  const isRemote = (job.workplaceType || "").toLowerCase() === "remote";
-  if (isRemote) {
-    node.jobLocationType = "TELECOMMUTE";
-    node.applicantLocationRequirements = {
-      "@type": "Country",
-      name: "India",
-    };
-  } else {
-    const address = {
-      "@type": "PostalAddress",
-      addressCountry: "IN",
-    };
-    // Only publish a locality the admin actually entered — never invent a city.
-    if (job.location && job.location.trim()) {
-      address.addressLocality = job.location.trim();
-    }
-    node.jobLocation = { "@type": "Place", address };
-  }
-
-  // Base salary if provided
-  if (job.salaryMin || job.salaryMax) {
-    node.baseSalary = {
-      "@type": "MonetaryAmount",
-      currency: "INR",
-      value: {
-        "@type": "QuantitativeValue",
-        minValue: job.salaryMin || undefined,
-        maxValue: job.salaryMax || undefined,
-        unitText: (job.salaryPeriod || "").toLowerCase().includes("month") ? "MONTH" : "YEAR",
-      },
-    };
-  }
-
-  return node;
-}
-
-/**
  * Merge multiple JSON-LD objects/arrays safely
  */
 export function mergeJsonLd(...items) {
@@ -852,17 +459,10 @@ const structuredData = {
   getRootJsonLd,
   getBreadcrumbsJsonLd,
   getFaqPageJsonLd,
-  getEventJsonLd,
-  getPublicAdJsonLd,
-  getPublicEventJsonLd,
-  getLocalBusinessJsonLd,
-  getCollectionPageJsonLd,
-  getArticleJsonLd,
-  getPersonJsonLd,
   getWebPageJsonLd,
   getContactPageJsonLd,
   getAboutPageJsonLd,
-  getJobPostingJsonLd,
+  getCollectionPageJsonLd,
   getSpeakableJsonLd,
   getJsonLdScript,
   mergeJsonLd,
