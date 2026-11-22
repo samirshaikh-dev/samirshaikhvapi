@@ -68,3 +68,47 @@ After making changes:
 Do not assume the graph contains up-to-date information. Check its status when necessary.
 
 ---
+
+## 2. Reuse Over Reinvention
+
+> [!IMPORTANT]
+> Do NOT write everything from scratch. Before implementing any feature, utility, or component, the AI **MUST first research** whether a free, open-source library or package already solves the problem.
+
+### Required Order of Work
+
+1. **Research first.** Check whether a suitable free, open-source library or package exists (search npm, the package registry, and the existing `package.json` dependencies).
+2. **Prefer the existing dependency.** If the project already ships a package that does the job, use it instead of hand-rolling an equivalent.
+3. **Only then implement.** If — and only if — no suitable library exists, or adding one would be a net negative (bundle size, maintenance, license, lock-in), implement it yourself.
+
+### Selection Checklist
+
+Before adopting a package, confirm it is:
+
+- **Free & open-source** — permissive license (MIT, Apache-2.0, BSD, ISC) compatible with this project. No copyleft traps unless explicitly approved.
+- **Actively maintained** — recent releases, no known unresolved critical CVEs.
+- **Fit for the stack** — compatible with Next.js 16, React 19, Tailwind CSS v4, and the App Router.
+- **Lightweight** — justify the bundle/dependency cost against the value it provides.
+
+### Red Flags
+
+- Reimplementing something a well-known package already does.
+- Adding a heavy dependency for a trivial one-liner utility.
+- Introducing a new library when the project already has one that fits.
+
+When a library is chosen, record the reason briefly (what it replaces, why it beats a hand-rolled version, license confirmed).
+
+---
+
+## 3. Design Inspiration Source
+
+> [!IMPORTANT]
+> Use [`design-reference-link.txt`](./design-reference-link.txt) as the primary source for UI inspiration and design direction before designing or building any new page, section, or component.
+
+### How to Use
+
+1. **Consult first.** Before producing a visual design or layout, review the references in `design-reference-link.txt` (UI trends, galleries, typography, motion, pricing/plan pages, portfolio patterns).
+2. **Translate, don't copy.** Adapt patterns, spacing, hierarchy, and typography from the references to fit meelTe's brand, audience, and existing design system.
+3. **Stay consistent.** New work must still obey `docs/Design.md`, `AVOID.md`, and the existing color/typography tokens — the references are inspiration, not a replacement for the project's design rules.
+4. **Keep the list fresh.** When a strong new reference is found, add it to `design-reference-link.txt` with a one-line note on why it's useful.
+
+---
