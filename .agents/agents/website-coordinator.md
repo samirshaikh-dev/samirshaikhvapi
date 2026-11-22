@@ -8,7 +8,7 @@ skills:
   - code-review-graph
 ---
 
-You coordinate implementation work for this repository. Read `AGENTS.md` and the relevant parts of `AI_RULE.md` before planning changes. Follow the repository's existing conventions and its requirement to read applicable skills from `.agents/skills/` before implementation.
+You coordinate implementation work for this repository. Read `AGENTS.md` and the relevant parts of `AI_RULE.md` before planning changes. Follow the repository's existing conventions and its requirement to read applicable skills from `.agents/skills/` before implementation. For visual/design tasks, ensure specialists also consult relevant project docs and new design/asset skills as applicable: `ui-ux-pro-max`, `refactoring-ui`, `color-expert`, `awwwards-inspiration`, `meshy-3d-generation`, `layer-3d`, and `web-asset-generator`.
 
 ## Primary Codebase Intelligence (Code Review Graph)
 
@@ -37,8 +37,8 @@ Code Review Graph (`.code-review-graph/graph.db`) is the primary codebase intell
 
 ## Routing
 
-- UI, components, forms, and interaction implementation → Frontend Engineer.
-- Design direction, pattern research, card density, motion design, and anti-slop review → UI/UX Engineer.
+- UI, components, forms, 3D/asset integration, and interaction implementation → Frontend Engineer.
+- Design direction, pattern/portfolio inspiration research, typography and color research, card density, motion design, 3D/asset direction, and anti-slop review → UI/UX Engineer.
 - WCAG, keyboard, screen-reader, focus, contrast, and reduced-motion → Accessibility Engineer.
 - Crawlability, metadata, schema, discovery files, and keyword/on-page SEO → SEO Engineer.
 - Prompts, retrieval, model behavior, or AI output quality → AI Engineer.

@@ -3,7 +3,7 @@
 > **Repository:** `nextjs-website`  
 > **Brand:** meelTe (Hyper-local Community Platform)  
 > **Stack:** Next.js 16 (App Router), React 19, Tailwind CSS v4, npm  
-> **Companion Directives:** [`AGENTS.md`](./AGENTS.md), [`docs/`](./docs) (all files), [`meelTe-context.md`](./meelTe-context.md), [`AVOID.md`](./AVOID.md)
+> **Companion Directives:** [`AGENTS.md`](./AGENTS.md), [`gemini.md`](./gemini.md), [`docs/`](./docs) (all files), [`AVOID.md`](./AVOID.md), [`design-reference-link.txt`](./design-reference-link.txt)
 
 ---
 
@@ -37,9 +37,12 @@
 > Before proposing any changes, writing a single line of code, creating new files, or editing existing files, the AI **MUST read every document inside the [`docs/`](./docs) folder in full**. This includes, but is not limited to, `docs/DESIGN.MD`, `docs/SEO.MD`, `docs/FEEL.md`, and `docs/TARGET-CUSTOMER.md`. Treat this folder as a living source of truth: re-scan `docs/` for new or renamed files before each task, since the contents may expand over time.
 
 ### Skill & Agent Locations
-- **Skills:** `.agents/skills/<skill-id>/SKILL.md` — 16 discipline skills (note the leading dot). OpenCode also discovers this path automatically.
+- **Skills:** `.agents/skills/<skill-id>/SKILL.md` — 47 discipline skills (note the leading dot). OpenCode also discovers this path automatically.
 - **OpenCode agents:** `.opencode/agents/<agent-id>.md` — V2 frontmatter (`description`, `mode`, `permissions`); the ID comes from the filename.
-- **GitHub Copilot agents:** `.github/agents/<agent-id>.agent.md` — same six roles, keep in sync with the OpenCode copies.
+- **GitHub Copilot agents:** `.github/agents/<agent-id>.agent.md` — same 8 roles, keep in sync with the OpenCode copies.
+- **Google Antigravity agents:** `.agents/agents/<agent-id>.md` — same 8 roles, keep in sync.
+
+**Agents (8):** `website-coordinator` (primary), `frontend-engineer`, `ui-ux-engineer`, `accessibility-engineer`, `seo-engineer`, `ai-engineer`, `performance-engineer`, `security-engineer`.
 
 ### Primary Discipline Routing:
 - **UI & Visual Design:** [`.agents/skills/ui-ux-engineer/SKILL.md`](./.agents/skills/ui-ux-engineer/SKILL.md) — Layout, color tokens, typography, bento grids, responsive aesthetics.
@@ -52,7 +55,7 @@
 
 ### 1.4 Code Review Graph — Primary Codebase Intelligence
 
-Code Review Graph is the primary codebase intelligence tool for this project. See `code-review-install-guide.txt` for setup and usage.
+Code Review Graph is the primary codebase intelligence tool for this project.
 
 Before making any change:
 1. Inspect the existing codebase graph (`.code-review-graph/graph.db`).

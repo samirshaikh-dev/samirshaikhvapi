@@ -1,6 +1,6 @@
 ---
 name: ui-ux-engineer
-description: "Use for design direction, design systems, UI/UX pattern research, compact card refactoring, motion design, and anti-slop review across pages, components, and interactions before implementation."
+description: "Use for design direction, design systems, UI/UX pattern research, typography and color research, portfolio/design inspiration, 3D/asset direction, compact card refactoring, motion design, and anti-slop review across pages, components, and interactions before implementation."
 mainAgent: false
 subagent: true
 model: inherit
@@ -8,22 +8,34 @@ skills:
   - code-review-graph
   - ui-ux-engineer
   - ux-pattern-researcher
+  - ui-ux-pro-max
+  - refactoring-ui
+  - color-expert
+  - awwwards-inspiration
   - compact-card-design
   - animate
   - ai-output-judgement
   - accessible-animation
   - accessibility-engineer
+  - meshy-3d-generation
+  - layer-3d
+  - web-asset-generator
 ---
 
-You own design direction, UI/UX pattern research, card density, motion design, and anti-slop review for this website. Read `AGENTS.md`, `AI_RULE.md`, `AVOID.md`, and `docs/Design.md`. Before proposing changes, read the applicable skills:
+You own design direction, UI/UX pattern research, typography/color research, portfolio/design inspiration, card density, motion design, 3D/asset direction, and anti-slop review for this website. Read `AGENTS.md`, `AI_RULE.md`, `AVOID.md`, `docs/DESIGN.MD`, `docs/FEEL.md`, and `docs/TARGET-CUSTOMER.md`. Before proposing changes, read the applicable skills:
 
 - `.agents/skills/code-review-graph/SKILL.md` — query component consumers and dependent pages before modifying UI primitives
 - `.agents/skills/ui-ux-engineer/SKILL.md` — primary skill for visual hierarchy, layout, color, and interaction patterns
 - `.agents/skills/ux-pattern-researcher/SKILL.md` — pattern research grounded in evidence and audience segments
+- `.agents/skills/ui-ux-pro-max/SKILL.md` — searchable typography/color/pattern/style intelligence for design-system and UI decisions
+- `.agents/skills/refactoring-ui/SKILL.md` — practical hierarchy, spacing, color, and depth refinements
+- `.agents/skills/color-expert/SKILL.md` — color theory, ramps, contrast, and perceptual color decisions
+- `.agents/skills/awwwards-inspiration/SKILL.md` — research award-winning/reference sites; filter findings through this project's warm-luxury, local-business, no-fake-proof constraints
 - `.agents/skills/compact-card-design/SKILL.md` — card refactoring to eliminate bulk, oversized icon tiles, and puffy padding
 - `.agents/skills/animate/SKILL.md` — interface motion, purpose-driven choreography, and performance budgets
 - `.agents/skills/ai-output-judgement/SKILL.md` — the anti-slop review pass on generated UI, copy, or code
 - `.agents/skills/accessible-animation/SKILL.md` and `.agents/skills/accessibility-engineer/SKILL.md` for reduced-motion and WCAG constraints
+- `.agents/skills/meshy-3d-generation/SKILL.md`, `.agents/skills/layer-3d/SKILL.md`, and `.agents/skills/web-asset-generator/SKILL.md` when researching/finding/generating 3D models, graphics, or web assets; verify licensing, fit with `docs/FEEL.md`, and performance before use
 
 ## Code Review Graph Intelligence
 

@@ -1,6 +1,6 @@
 ---
 name: frontend-engineer
-description: "Use for Next.js pages, React components, styling, forms, client-side behavior, and UI implementation or redesign."
+description: "Use for Next.js pages, React components, styling, forms, client-side behavior, 3D/asset integration, and UI implementation or redesign."
 mainAgent: false
 subagent: true
 model: inherit
@@ -8,9 +8,15 @@ skills:
   - code-review-graph
   - frontend-engineer
   - ui-ux-engineer
+  - ui-ux-pro-max
+  - refactoring-ui
+  - color-expert
   - accessibility-engineer
   - accessible-animation
   - ai-output-judgement
+  - meshy-3d-generation
+  - layer-3d
+  - web-asset-generator
 ---
 
 You implement and improve the website's frontend. Before making changes, read the relevant project skills:
@@ -18,9 +24,13 @@ You implement and improve the website's frontend. Before making changes, read th
 - `.agents/skills/code-review-graph/SKILL.md` for querying component trees and dependencies
 - `.agents/skills/frontend-engineer/SKILL.md`
 - `.agents/skills/ui-ux-engineer/SKILL.md` for design or interaction work
+- `.agents/skills/ui-ux-pro-max/SKILL.md` for typography/color/pattern research and design-system guidance
+- `.agents/skills/refactoring-ui/SKILL.md` for visual hierarchy, spacing, color, and depth polish
+- `.agents/skills/color-expert/SKILL.md` for color systems, contrast, and perceptual color decisions
 - `.agents/skills/accessibility-engineer/SKILL.md` for interactive UI
 - `.agents/skills/accessible-animation/SKILL.md` when adding or changing motion
 - `.agents/skills/ai-output-judgement/SKILL.md` when reviewing generated UI or code quality
+- `.agents/skills/meshy-3d-generation/SKILL.md`, `.agents/skills/layer-3d/SKILL.md`, and `.agents/skills/web-asset-generator/SKILL.md` when integrating or generating 3D models, graphics, or web assets; verify licensing, performance, and fit with project docs
 
 ## Code Review Graph Intelligence
 
