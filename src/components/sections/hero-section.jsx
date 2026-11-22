@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,9 +18,30 @@ import {
   IconMapPin,
 } from "@/components/ui/icons";
 
+// Three.js cannot be server-rendered — load the hero scene client-side only.
+const HeroScene = dynamic(() => import("@/components/motion/hero-scene"), {
+  ssr: false,
+  loading: () => null,
+});
+
 export function HeroSection() {
   const rootRef = useRef(null);
+  const sceneWrapRef = useRef(null);
+  const [sceneActive, setSceneActive] = useState(true);
   const reduced = useReducedMotion();
+
+  // Pause the WebGL render loop when the 3D scene scrolls out of view
+  // (.agents/skills/animate: nonessential loops must stop offscreen).
+  useEffect(() => {
+    const el = sceneWrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setSceneActive(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -27,22 +49,17 @@ export function HeroSection() {
     if (!root) return;
 
     const ctx = gsap.context(() => {
-      // Tier 2 normal: staggered entrance (rise + fade). Tier 3 reduced: fade only.
-      const from = reduced
-        ? { autoAlpha: 0 }
-        : { autoAlpha: 0, y: 28 };
+      const from = reduced ? { autoAlpha: 0 } : { autoAlpha: 0, y: 28 };
       const to = reduced
         ? { autoAlpha: 1, duration: 0.3, stagger: 0.05, ease: "power1.out" }
         : { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.09, ease: "power3.out" };
 
       gsap.from(".hero-reveal", { ...from, ...to });
 
-      // Tier 1 parallax: only when motion is allowed. The showcase card drifts
-      // and scales subtly as the hero scrolls out, implying spatial depth.
+      // Tier 1 parallax: showcase card drifts as the hero scrolls out.
       if (!reduced) {
         gsap.to(".hero-showcase", {
-          yPercent: -12,
-          scale: 0.97,
+          yPercent: -10,
           ease: "none",
           scrollTrigger: {
             trigger: ".hero-showcase",
@@ -67,17 +84,11 @@ export function HeroSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-grid-hairline opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_60%_30%,#000_40%,transparent_100%)]"
       />
-      {/* Soft spatial lavender depth accent — not a gradient blob */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-32 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#E9E5F5]/50 blur-3xl"
-      />
 
       <Container className="relative">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10 items-center">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-8 items-center">
           {/* Left: editorial headline & conversion messaging */}
-          <div className="lg:col-span-7">
-            {/* Location & status */}
+          <div className="lg:col-span-6">
             <div className="hero-reveal inline-flex items-center gap-2 rounded-full border border-[#E3DFD6] bg-white px-3.5 py-1.5 shadow-xs">
               <span className="relative flex h-2 w-2">
                 {!reduced && (
@@ -90,14 +101,12 @@ export function HeroSection() {
               </span>
             </div>
 
-            {/* Editorial H1 with per-line rise */}
             <h1 className="hero-reveal type-display text-[#172C46] mt-6">
               Modern Websites
               <br className="hidden sm:block" /> for Growing Businesses in{" "}
               <span className="text-[#F26A3D]">Vapi</span>.
             </h1>
 
-            {/* Value proposition */}
             <p className="hero-reveal mt-6 max-w-xl type-lede text-[#626A73]">
               I help local manufacturers, clinics, retail shops, and growing
               companies build a stronger digital presence through high-performance
@@ -105,7 +114,6 @@ export function HeroSection() {
               tools.
             </p>
 
-            {/* CTAs */}
             <div className="hero-reveal mt-8 flex flex-wrap items-center gap-4">
               <a
                 href={siteConfig.whatsappUrl}
@@ -127,7 +135,6 @@ export function HeroSection() {
               </Link>
             </div>
 
-            {/* Trust points */}
             <div className="hero-reveal mt-8 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#626A73] font-medium">
               <span className="flex items-center gap-1.5">
                 <IconCheck className="w-4 h-4 text-[#F26A3D]" />
@@ -144,112 +151,106 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right: spatial 3D / editorial showcase */}
-          <div className="hero-showcase lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main showcase surface: Sahara Tyre local project card */}
-              <div className="rounded-3xl border border-[#E3DFD6] bg-white p-6 sm:p-7 shadow-floating relative z-10">
-                {/* Browser chrome */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#E3DFD6]">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-[#E3DFD6]" />
-                    <span className="h-3 w-3 rounded-full bg-[#E3DFD6]" />
-                    <span className="h-3 w-3 rounded-full bg-[#E3DFD6]" />
-                  </div>
-                  <span className="text-[11px] font-semibold text-[#858A91] tracking-wider uppercase">
-                    Local Vapi Business Showcase
-                  </span>
-                </div>
+          {/* Right: authored 3D focal moment + spatial showcase */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative mx-auto max-w-lg lg:max-w-none">
+              {/* Soft lavender depth accent behind the scene */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[#E9E5F5]/60 blur-3xl"
+              />
 
-                {/* Card body */}
-                <div className="pt-5 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#F26A3D]">
-                        Automotive Digital Platform
+              {/* Focal 3D canvas — mounted only when motion is allowed.
+                  Under reduced motion a static spatial showcase renders instead. */}
+              <div
+                ref={sceneWrapRef}
+                className="relative h-[300px] sm:h-[380px] lg:h-[440px] w-full"
+                aria-hidden="true"
+              >
+                {reduced ? (
+                  <div className="flex h-full w-full items-center justify-center">
+                    <div className="rounded-3xl border border-[#E3DFD6] bg-white px-8 py-10 shadow-floating text-center">
+                      <span className="text-4xl font-black tracking-tight text-[#172C46]">
+                        Samir<span className="text-[#F26A3D]">.</span>
                       </span>
-                      <h3 className="text-xl font-bold text-[#172C46]">
-                        Sahara Tyre — Vapi
-                      </h3>
-                      <p className="text-xs text-[#626A73] mt-0.5">
-                        sahara-tyre.vercel.app
+                      <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-[#858A91]">
+                        Vapi · Web · AI
                       </p>
                     </div>
-                    <Badge variant="tangerine">Live Platform</Badge>
+                  </div>
+                ) : (
+                  <HeroScene active={sceneActive} />
+                )}
+              </div>
+
+              {/* Supporting spatial showcase card — Sahara Tyre local project */}
+              <div className="hero-showcase relative z-10 mt-2 sm:-mt-6">
+                <div className="rounded-2xl border border-[#E3DFD6] bg-white p-5 shadow-floating">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#E3DFD6]">
+                    <div className="flex items-center gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#E3DFD6]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#E3DFD6]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#E3DFD6]" />
+                    </div>
+                    <span className="text-[10px] font-semibold text-[#858A91] tracking-wider uppercase">
+                      Local Vapi Showcase
+                    </span>
                   </div>
 
-                  {/* Interactive mockup detail */}
-                  <div className="rounded-xl bg-[#F6F2E9] p-4 border border-[#E3DFD6] space-y-3">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-semibold text-[#172C46]">
-                        Tyre Catalogue & Sizing
-                      </span>
-                      <span className="text-[#F26A3D] font-bold">57 Sizes</span>
+                  <div className="pt-3 space-y-3">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#F26A3D]">
+                          Automotive Digital Platform
+                        </span>
+                        <h3 className="text-lg font-bold text-[#172C46]">
+                          Sahara Tyre — Vapi
+                        </h3>
+                        <p className="text-[11px] text-[#626A73]">
+                          sahara-tyre.vercel.app
+                        </p>
+                      </div>
+                      <Badge variant="tangerine" className="text-[10px]">
+                        Live
+                      </Badge>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
-                      <div className="rounded-lg bg-white p-2 border border-[#E3DFD6]">
+                    <div className="grid grid-cols-3 gap-1.5 text-center text-[10px]">
+                      <div className="rounded-lg bg-[#F6F2E9] p-2 border border-[#E3DFD6]">
                         <span className="block font-bold text-[#172C46]">PCR</span>
-                        <span className="text-[10px] text-[#858A91]">Passenger Cars</span>
+                        <span className="text-[#858A91]">Passenger</span>
                       </div>
-                      <div className="rounded-lg bg-white p-2 border border-[#E3DFD6]">
+                      <div className="rounded-lg bg-[#F6F2E9] p-2 border border-[#E3DFD6]">
                         <span className="block font-bold text-[#172C46]">SUV</span>
-                        <span className="text-[10px] text-[#858A91]">All-Terrain</span>
+                        <span className="text-[#858A91]">All-Terrain</span>
                       </div>
-                      <div className="rounded-lg bg-white p-2 border border-[#E3DFD6]">
+                      <div className="rounded-lg bg-[#F6F2E9] p-2 border border-[#E3DFD6]">
                         <span className="block font-bold text-[#172C46]">CV</span>
-                        <span className="text-[10px] text-[#858A91]">Commercial</span>
+                        <span className="text-[#858A91]">Commercial</span>
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-[#172C46] text-white p-2.5 flex items-center justify-between text-xs">
-                      <span>Quick Quote WhatsApp Inquiry</span>
-                      <IconWhatsApp className="w-4 h-4 text-[#F26A3D]" />
+                    <div className="flex items-center justify-between text-[11px] text-[#626A73]">
+                      <span className="flex items-center gap-1">
+                        <IconCheck className="w-3 h-3 text-[#F26A3D]" /> 57+ tyre sizes
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <IconMapPin className="w-3 h-3 text-[#F26A3D]" /> Vapi GIDC
+                      </span>
                     </div>
                   </div>
-
-                  {/* Benefit highlights */}
-                  <div className="flex items-center justify-between text-xs text-[#626A73] pt-1">
-                    <span>⚡ Optimized Load: 0.8s</span>
-                    <span>📍 Vapi GIDC Market</span>
-                  </div>
                 </div>
               </div>
 
-              {/* Floating spatial accent: tech stack */}
+              {/* Floating tech accent */}
               <div
-                className="hidden sm:flex absolute -top-5 -left-6 z-20 items-center gap-3 rounded-2xl glass-lavender p-3.5 shadow-card"
+                className="hidden sm:flex absolute top-6 -left-4 z-20 items-center gap-2 rounded-xl glass-lavender p-2.5 shadow-card"
                 aria-hidden="true"
               >
-                <div className="rounded-xl bg-white p-2 shadow-xs text-[#F26A3D]">
-                  <IconSparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="block text-xs font-bold text-[#172C46]">
-                    Next.js 16 & React 19
-                  </span>
-                  <span className="text-[11px] text-[#626A73]">
-                    Zero CLS · Clean Core Web Vitals
-                  </span>
-                </div>
-              </div>
-
-              {/* Floating spatial accent: local reach */}
-              <div
-                className="hidden sm:flex absolute -bottom-5 -right-4 z-20 items-center gap-3 rounded-2xl bg-white border border-[#E3DFD6] p-3.5 shadow-card"
-                aria-hidden="true"
-              >
-                <div className="rounded-xl bg-[#E9E5F5] p-2 text-[#172C46]">
-                  <IconMapPin className="w-5 h-5 text-[#F26A3D]" />
-                </div>
-                <div>
-                  <span className="block text-xs font-bold text-[#172C46]">
-                    Vapi & South Gujarat
-                  </span>
-                  <span className="text-[11px] text-[#626A73]">
-                    Direct Local Inquiries
-                  </span>
-                </div>
+                <IconSparkles className="w-4 h-4 text-[#F26A3D]" />
+                <span className="text-[11px] font-bold text-[#172C46]">
+                  Next.js 16 · React 19
+                </span>
               </div>
             </div>
           </div>
