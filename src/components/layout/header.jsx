@@ -62,7 +62,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[#172C46]/85 transition-colors hover:text-[#F26A3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F26A3D] rounded-md px-1"
+              className="link-underline text-sm font-medium text-[#172C46]/85 transition-colors hover:text-[#F26A3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F26A3D] rounded-md px-1"
             >
               {item.label}
             </Link>

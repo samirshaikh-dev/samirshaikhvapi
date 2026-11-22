@@ -67,6 +67,8 @@ export function ContactSection() {
   return (
     <Section
       id="contact"
+      index="07"
+      total="07"
       badge="Start a Conversation"
       title="Let's Build Something Together"
       description="Have a website project, industrial catalogue, or digital idea in mind? Reach out directly via WhatsApp for the fastest reply, or submit the project inquiry form below."

@@ -1,39 +1,88 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useReducedMotion } from "@/lib/motion/use-reduced-motion";
 import {
   IconWhatsApp,
   IconArrowRight,
   IconSparkles,
   IconCheck,
   IconMapPin,
-  IconShieldCheck,
-  IconLaptop,
 } from "@/components/ui/icons";
 
 export function HeroSection() {
+  const rootRef = useRef(null);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const root = rootRef.current;
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      // Tier 2 normal: staggered entrance (rise + fade). Tier 3 reduced: fade only.
+      const from = reduced
+        ? { autoAlpha: 0 }
+        : { autoAlpha: 0, y: 28 };
+      const to = reduced
+        ? { autoAlpha: 1, duration: 0.3, stagger: 0.05, ease: "power1.out" }
+        : { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.09, ease: "power3.out" };
+
+      gsap.from(".hero-reveal", { ...from, ...to });
+
+      // Tier 1 parallax: only when motion is allowed. The showcase card drifts
+      // and scales subtly as the hero scrolls out, implying spatial depth.
+      if (!reduced) {
+        gsap.to(".hero-showcase", {
+          yPercent: -12,
+          scale: 0.97,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-showcase",
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.6,
+          },
+        });
+      }
+    }, root);
+
+    return () => ctx.revert();
+  }, [reduced]);
+
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 sm:pt-20 sm:pb-28">
-      {/* Subtle Warm Luxury background spatial elements */}
+    <section
+      ref={rootRef}
+      className="relative overflow-hidden pt-14 pb-20 sm:pt-20 sm:pb-28"
+    >
+      {/* Structural hairline grid backdrop (raw-structural, low-contrast) */}
       <div
-        className="pointer-events-none absolute -top-24 right-0 h-96 w-96 rounded-full bg-[#E9E5F5]/60 blur-3xl"
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-grid-hairline opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_60%_30%,#000_40%,transparent_100%)]"
       />
+      {/* Soft spatial lavender depth accent — not a gradient blob */}
       <div
-        className="pointer-events-none absolute top-1/2 -left-24 h-80 w-80 rounded-full bg-[#EEEAE1]/80 blur-2xl"
         aria-hidden="true"
+        className="pointer-events-none absolute -top-32 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#E9E5F5]/50 blur-3xl"
       />
 
       <Container className="relative">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 items-center">
-          {/* Left Column: Editorial Headline & Conversion Messaging */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Location & Status Pill */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#E3DFD6] bg-white px-3.5 py-1.5 shadow-xs">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10 items-center">
+          {/* Left: editorial headline & conversion messaging */}
+          <div className="lg:col-span-7">
+            {/* Location & status */}
+            <div className="hero-reveal inline-flex items-center gap-2 rounded-full border border-[#E3DFD6] bg-white px-3.5 py-1.5 shadow-xs">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26A3D] opacity-75" />
+                {!reduced && (
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26A3D] opacity-60" />
+                )}
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26A3D]" />
               </span>
               <span className="text-xs font-medium text-[#172C46]">
@@ -41,18 +90,23 @@ export function HeroSection() {
               </span>
             </div>
 
-            {/* Editorial H1 */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#172C46] leading-[1.12]">
-              Modern Websites for Growing Businesses in Vapi.
+            {/* Editorial H1 with per-line rise */}
+            <h1 className="hero-reveal type-display text-[#172C46] mt-6">
+              Modern Websites
+              <br className="hidden sm:block" /> for Growing Businesses in{" "}
+              <span className="text-[#F26A3D]">Vapi</span>.
             </h1>
 
-            {/* Value Proposition */}
-            <p className="max-w-xl text-lg sm:text-xl text-[#626A73] leading-relaxed">
-              I help local manufacturers, clinics, retail shops, and growing companies build a stronger digital presence through high-performance websites, industrial product catalogues, and intelligent customer tools.
+            {/* Value proposition */}
+            <p className="hero-reveal mt-6 max-w-xl type-lede text-[#626A73]">
+              I help local manufacturers, clinics, retail shops, and growing
+              companies build a stronger digital presence through high-performance
+              websites, industrial product catalogues, and intelligent customer
+              tools.
             </p>
 
-            {/* Call to Actions */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* CTAs */}
+            <div className="hero-reveal mt-8 flex flex-wrap items-center gap-4">
               <a
                 href={siteConfig.whatsappUrl}
                 target="_blank"
@@ -74,7 +128,7 @@ export function HeroSection() {
             </div>
 
             {/* Trust points */}
-            <div className="pt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#626A73] font-medium">
+            <div className="hero-reveal mt-8 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#626A73] font-medium">
               <span className="flex items-center gap-1.5">
                 <IconCheck className="w-4 h-4 text-[#F26A3D]" />
                 Fast Mobile-First Loading
@@ -90,12 +144,12 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column: Spatial 3D / Editorial Hybrid Composition */}
-          <div className="lg:col-span-5 relative">
+          {/* Right: spatial 3D / editorial showcase */}
+          <div className="hero-showcase lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main Showcase Surface: Sahara Tyre Local Project Card */}
-              <div className="rounded-3xl border border-[#E3DFD6] bg-white p-6 sm:p-7 shadow-floating relative z-10 transition-transform duration-300 hover:scale-[1.01]">
-                {/* Header of mock card */}
+              {/* Main showcase surface: Sahara Tyre local project card */}
+              <div className="rounded-3xl border border-[#E3DFD6] bg-white p-6 sm:p-7 shadow-floating relative z-10">
+                {/* Browser chrome */}
                 <div className="flex items-center justify-between pb-4 border-b border-[#E3DFD6]">
                   <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-[#E3DFD6]" />
@@ -107,7 +161,7 @@ export function HeroSection() {
                   </span>
                 </div>
 
-                {/* Card Body */}
+                {/* Card body */}
                 <div className="pt-5 space-y-4">
                   <div className="flex items-start justify-between">
                     <div>
@@ -124,7 +178,7 @@ export function HeroSection() {
                     <Badge variant="tangerine">Live Platform</Badge>
                   </div>
 
-                  {/* Interactive Mockup Detail */}
+                  {/* Interactive mockup detail */}
                   <div className="rounded-xl bg-[#F6F2E9] p-4 border border-[#E3DFD6] space-y-3">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-semibold text-[#172C46]">
@@ -162,7 +216,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating Spatial Accent 1: Architecture Badge */}
+              {/* Floating spatial accent: tech stack */}
               <div
                 className="hidden sm:flex absolute -top-5 -left-6 z-20 items-center gap-3 rounded-2xl glass-lavender p-3.5 shadow-card"
                 aria-hidden="true"
@@ -180,7 +234,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Floating Spatial Accent 2: Local Reach */}
+              {/* Floating spatial accent: local reach */}
               <div
                 className="hidden sm:flex absolute -bottom-5 -right-4 z-20 items-center gap-3 rounded-2xl bg-white border border-[#E3DFD6] p-3.5 shadow-card"
                 aria-hidden="true"
@@ -201,14 +255,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Geographic Coverage Ribbon */}
+        {/* Geographic coverage ribbon */}
         <div className="mt-16 sm:mt-20 border-t border-[#E3DFD6] pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-[#858A91]">
               Serving Local Businesses In:
             </span>
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-medium text-[#172C46]">
-              {siteConfig.coverageAreas.map((area, idx) => (
+              {siteConfig.coverageAreas.map((area) => (
                 <span
                   key={area}
                   className="rounded-full bg-white border border-[#E3DFD6] px-3 py-1 shadow-2xs hover:border-[#F26A3D] transition-colors"

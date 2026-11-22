@@ -16,6 +16,8 @@ export function FaqSection() {
   return (
     <Section
       id="faq"
+      index="06"
+      total="07"
       badge="Clarity & Answers"
       title="Frequently Asked Questions"
       description="Clear answers about costs, timelines, redesigns, and how we work together."

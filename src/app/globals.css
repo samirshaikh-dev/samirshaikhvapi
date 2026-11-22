@@ -90,3 +90,79 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(227, 223, 214, 0.8);
 }
+
+/* ------------------------------------------------------------------ *
+ * Fluid editorial typography (Tubik 2026: clamp()-based, not breakpoints)
+ * Replace fixed step sizes with smooth viewport-scaled clamps so type
+ * flows between mobile and ultrawide without snapping at breakpoints.
+ * ------------------------------------------------------------------ */
+.type-display {
+  font-size: clamp(2.5rem, 1.6rem + 4.4vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.type-section {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.type-subhead {
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.type-lede {
+  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.65;
+}
+
+/* ------------------------------------------------------------------ *
+ * Raw-structural aesthetic (Tubik 2026 "wireframe / grid as foreground")
+ * A subtle foreground hairline grid used sparingly as a structural
+ * motif — not decoration. Low-contrast ivory tones only.
+ * ------------------------------------------------------------------ */
+.bg-grid-hairline {
+  background-image:
+    linear-gradient(to right, rgba(23, 44, 70, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 44, 70, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Editorial hairline rule */
+.rule-hairline {
+  border-color: #e3dfd6;
+}
+
+/* Underline that draws in on hover — purposeful link affordance */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1.5px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Tier-2 override: under reduced motion the underline should not slide */
+@media (prefers-reduced-motion: reduce) {
+  .link-underline::after {
+    transition: none;
+  }
+}

@@ -15,6 +15,8 @@ export function AboutSection() {
   return (
     <Section
       id="about"
+      index="05"
+      total="07"
       badge="About Samir"
       title="A Better Digital Presence for Your Business"
       description="Working directly with an independent digital developer gives your business focused attention, direct communication, and solutions built specifically for your needs."

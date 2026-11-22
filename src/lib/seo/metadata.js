@@ -157,7 +157,7 @@ export const metadata = {
  * @type {import('next').Viewport}
  */
 export const viewport = {
-  themeColor: "#6D3BB3",
+  themeColor: "#172C46",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,

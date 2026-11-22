@@ -7,9 +7,15 @@ import { Container } from "./container";
  * - Single-line desktop H2 headings with strong visual hierarchy.
  * - No preamble fluff paragraphs placed directly under headings.
  * - Warm Ivory background with subtle border dividing sections.
+ *
+ * Redesign (Tubik 2026 "raw-structural" + fluid type):
+ * - Headline uses clamp()-based .type-section for smooth scaling.
+ * - Optional structural index numeral ("01 / 08") as a foreground motif.
  */
 export function Section({
   id,
+  index,
+  total,
   badge,
   title,
   description,
@@ -27,16 +33,26 @@ export function Section({
       <Container className={containerClassName}>
         {title && (
           <div className="mb-12 sm:mb-16 max-w-2xl">
-            {badge && (
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#F26A3D] mb-2">
-                {badge}
-              </span>
+            {(badge || index) && (
+              <div className="flex items-center gap-3 mb-3">
+                {index && (
+                  <span className="text-xs font-bold tabular-nums text-[#172C46]/35 tracking-widest">
+                    {index}
+                    {total ? ` / ${total}` : ""}
+                  </span>
+                )}
+                {badge && (
+                  <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#F26A3D]">
+                    {badge}
+                  </span>
+                )}
+              </div>
             )}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#172C46] leading-tight">
+            <h2 className="type-section text-[#172C46]">
               {title}
             </h2>
             {description && (
-              <p className="mt-3 text-base sm:text-lg text-[#626A73] leading-relaxed">
+              <p className="mt-4 type-lede text-[#626A73]">
                 {description}
               </p>
             )}

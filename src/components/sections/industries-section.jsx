@@ -1,6 +1,7 @@
 import { Section } from "@/components/layout/section";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { RevealGroup } from "@/components/motion/reveal";
 import { industriesData } from "@/data/industries";
 import {
   IconFactory,
@@ -26,18 +27,25 @@ export function IndustriesSection() {
   return (
     <Section
       id="industries"
+      index="02"
+      total="07"
       badge="Local Market Relevance"
       title="Digital Experiences for Different Industries"
       description="Different businesses require different digital approaches. Here is how modern web development solves specific challenges across local sectors in Vapi and South Gujarat."
     >
-      <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <RevealGroup
+        selector=":scope > article"
+        stagger={0.08}
+        className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
+      >
         {industriesData.map((item) => {
           const IconComp = industryIconMap[item.icon] || IconFactory;
 
           return (
             <Card
               key={item.id}
-              className="flex flex-col justify-between hover:border-[#c9c4b7] transition-all"
+              as="article"
+              className="flex flex-col justify-between hover:border-[#c9c4b7] hover:-translate-y-1 transition-all duration-300"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -83,7 +91,7 @@ export function IndustriesSection() {
             </Card>
           );
         })}
-      </div>
+      </RevealGroup>
     </Section>
   );
 }

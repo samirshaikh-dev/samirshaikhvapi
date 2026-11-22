@@ -1,5 +1,6 @@
 import { Section } from "@/components/layout/section";
 import { Card } from "@/components/ui/card";
+import { RevealGroup } from "@/components/motion/reveal";
 import { IconCheck } from "@/components/ui/icons";
 
 const steps = [
@@ -57,15 +58,22 @@ export function ProcessSection() {
   return (
     <Section
       id="process"
+      index="04"
+      total="07"
       badge="Collaboration"
       title="How We Work"
       description="A structured, transparent process designed to respect your time and deliver a reliable digital presence without delays."
     >
-      <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <RevealGroup
+        selector=":scope > article"
+        stagger={0.08}
+        className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4"
+      >
         {steps.map((item) => (
           <Card
             key={item.step}
-            className="flex flex-col justify-between hover:border-[#F26A3D]/40 transition-all"
+            as="article"
+            className="flex flex-col justify-between hover:border-[#F26A3D]/40 hover:-translate-y-1 transition-all duration-300"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -99,7 +107,7 @@ export function ProcessSection() {
             </div>
           </Card>
         ))}
-      </div>
+      </RevealGroup>
     </Section>
   );
 }
