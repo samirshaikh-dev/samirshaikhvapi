@@ -3,7 +3,7 @@
 > **Repository:** `nextjs-website`  
 > **Brand:** meelTe (Hyper-local Community Platform)  
 > **Stack:** Next.js 16 (App Router), React 19, Tailwind CSS v4, npm  
-> **Companion Directives:** [`AGENTS.md`](./AGENTS.md), [`docs/target_customer.md`](./docs/target_customer.md), [`meelTe-context.md`](./meelTe-context.md), [`docs/Design.md`](./docs/Design.md)
+> **Companion Directives:** [`AGENTS.md`](./AGENTS.md), [`docs/`](./docs) (all files), [`meelTe-context.md`](./meelTe-context.md), [`AVOID.md`](./AVOID.md)
 
 ---
 
@@ -13,14 +13,14 @@
 
 > [!CAUTION]
 > ### STRICT ENFORCEMENT: ZERO IMPLEMENTATION WITHOUT READING THE PROJECT CONTEXT DOCUMENTS
-> Before proposing any changes, writing a single line of code, creating new files, or editing existing files, the AI **MUST ALWAYS read all four documents below in full**. No exceptions, no partial reads, no relying on memory from an earlier session.
+> Before proposing any changes, writing a single line of code, creating new files, or editing existing files, the AI **MUST ALWAYS read the documents below in full, plus every file in the `docs/` folder (see 1.3)**. No exceptions, no partial reads, no relying on memory from an earlier session.
 
 | # | Document | Why it is mandatory |
 | :--- | :--- | :--- |
 | 1 | **Code Review Graph** (`.code-review-graph/graph.db`) | Current routes, components, architecture boundaries, dependencies, execution flows, and change impact analysis. Run `python -m code_review_graph status` to verify graph health. |
 | 2 | **Prevent AI Slop** (`AVOID.md`) | UI/UX design anti-patterns: generic AI aesthetics, excessive cards, typography mistakes, decorative gradients, unnecessary animations, and visual clutter. Every visual decision must have a clear design purpose. |
 
-**Required step:** read all six, then state which parts of the requested change they govern, before reading skills or touching code.
+**Required step:** read all of the above plus every file in `docs/` (see 1.3), then state which parts of the requested change they govern, before reading skills or touching code.
 
 **Conflict rule:** if these documents disagree with each other or with the code, surface the conflict explicitly and resolve it deliberately. Never silently pick one, and never let "the website says it" override what the product actually does.
 
@@ -29,6 +29,12 @@
 > [!CAUTION]
 > ### STRICT ENFORCEMENT: ZERO IMPLEMENTATION WITHOUT READING SKILLS
 > Before proposing any changes, writing a single line of code, creating new files, or editing existing files, the AI **MUST ALWAYS load and read the applicable skill file(s) from `.agents/skills/` using `view_file`**.
+
+### 1.3 Mandatory Docs Folder Reading
+
+> [!CAUTION]
+> ### STRICT ENFORCEMENT: ZERO IMPLEMENTATION WITHOUT READING ALL DOCS IN `docs/`
+> Before proposing any changes, writing a single line of code, creating new files, or editing existing files, the AI **MUST read every document inside the [`docs/`](./docs) folder in full**. This includes, but is not limited to, `docs/DESIGN.MD`, `docs/SEO.MD`, `docs/FEEL.md`, and `docs/TARGET-CUSTOMER.md`. Treat this folder as a living source of truth: re-scan `docs/` for new or renamed files before each task, since the contents may expand over time.
 
 ### Skill & Agent Locations
 - **Skills:** `.agents/skills/<skill-id>/SKILL.md` — 16 discipline skills (note the leading dot). OpenCode also discovers this path automatically.
@@ -44,7 +50,7 @@
 - **Accessibility:** [`.agents/skills/accessibility-engineer/SKILL.md`](./.agents/skills/accessibility-engineer/SKILL.md) — Semantic HTML, keyboard operability, color contrast, ARIA labels.
 - **Performance:** [`.agents/skills/performance-engineer/SKILL.md`](./.agents/skills/performance-engineer/SKILL.md) — Core Web Vitals (LCP, CLS, INP), asset optimization, code splitting.
 
-### 1.3 Code Review Graph — Primary Codebase Intelligence
+### 1.4 Code Review Graph — Primary Codebase Intelligence
 
 Code Review Graph is the primary codebase intelligence tool for this project. See `code-review-install-guide.txt` for setup and usage.
 
@@ -110,5 +116,28 @@ When a library is chosen, record the reason briefly (what it replaces, why it be
 2. **Translate, don't copy.** Adapt patterns, spacing, hierarchy, and typography from the references to fit meelTe's brand, audience, and existing design system.
 3. **Stay consistent.** New work must still obey `docs/Design.md`, `AVOID.md`, and the existing color/typography tokens — the references are inspiration, not a replacement for the project's design rules.
 4. **Keep the list fresh.** When a strong new reference is found, add it to `design-reference-link.txt` with a one-line note on why it's useful.
+
+---
+
+## 4. Rich Graphics, Motion & Smoothness
+
+> [!IMPORTANT]
+> Prefer rich, high-quality graphics and motion. Use established libraries for graphics, animation, transitions, and smooth scrolling/rendering as much as possible rather than hand-rolling effects.
+
+### Preferred Libraries
+
+- **Motion / animation:** Framer Motion (`motion`), GSAP (+ ScrollTrigger).
+- **Smooth scrolling:** Lenis (`@studio-freight/lenis` / `lenis`).
+- **3D / graphics:** Three.js via React Three Fiber (`@react-three/fiber`, `@react-three/drei`).
+- **Transitions / page & view transitions:** View Transitions API + a library fallback; `framer-motion` `AnimatePresence`.
+
+Choose the lightest library that delivers the effect (see Section 2). Reuse what's already in `package.json` before adding new dependencies.
+
+### Guardrails (mandatory)
+
+- **Honor `prefers-reduced-motion`** — follow `.agents/skills/accessible-animation/SKILL.md` tiering (Tier 1 remove vestibular motion, Tier 2 soften/fade, Tier 3 keep feedback). Never ignore reduced-motion users.
+- **No slop motion** — every animation must have a clear purpose and obey `AVOID.md` (no decorative gradients, gratuitous looping animations, or visual clutter).
+- **Performance first** — animate `transform`/`opacity` only, avoid layout thrash, respect Core Web Vitals (LCP, CLS, INP). Lazy-load heavy 3D/graphics so they never block first paint.
+- **Graceful fallback** — content must remain usable if JS or WebGL is unavailable.
 
 ---
