@@ -122,7 +122,21 @@ When a library is chosen, record the reason briefly (what it replaces, why it be
 
 ---
 
-## 4. Rich Graphics, Motion & Smoothness
+## 4. Design & Motion Video References
+
+> [!IMPORTANT]
+> Use [`refere;-videe.txt`](./refere;-videe.txt) as a reference for motion, animation, and visual design inspiration before implementing rich graphics or transitions.
+
+### How to Use
+
+1. **Consult first.** Before implementing motion or animation effects, review the video references in `refere;-videe.txt` for timing, easing, and visual style direction.
+2. **Translate, don't copy.** Adapt motion patterns from the references to fit the project's brand and design system — never reproduce copyrighted content frame-for-frame.
+3. **Stay consistent.** New motion work must still obey `AVOID.md` (no decorative gradients, gratuitous looping animations, or visual clutter) and section 5's performance guardrails.
+4. **Keep the list fresh.** When a strong new video reference is found, add it to `refere;-videe.txt` with a one-line note on why it's useful.
+
+---
+
+## 5. Rich Graphics, Motion & Smoothness
 
 > [!IMPORTANT]
 > Prefer rich, high-quality graphics and motion. Use established libraries for graphics, animation, transitions, and smooth scrolling/rendering as much as possible rather than hand-rolling effects.

@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F6F2E9;
+  --foreground: #172C46;
+  --surface: #FFFFFF;
+  --surface-subtle: #EEEAE1;
+  --midnight: #172C46;
+  --midnight-secondary: #626A73;
+  --midnight-muted: #858A91;
+  --tangerine: #F26A3D;
+  --tangerine-hover: #DF572A;
+  --lavender: #E9E5F5;
+  --border: #E3DFD6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-midnight: var(--midnight);
+  --color-midnight-secondary: var(--midnight-secondary);
+  --color-midnight-muted: var(--midnight-muted);
+  --color-tangerine: var(--tangerine);
+  --color-tangerine-hover: var(--tangerine-hover);
+  --color-lavender: var(--lavender);
+  --color-border-subtle: var(--border);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Light Theme Only per docs/DESIGN.MD (Section 1 & 2) */
+html {
+  background-color: #F6F2E9;
+  color: #172C46;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F6F2E9;
+  color: #172C46;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Animation Tiering (WCAG 2.3.3 / C39 per .agents/skills/accessible-animation/SKILL.md) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Editorial selection style */
+::selection {
+  background-color: #F26A3D;
+  color: #FFFFFF;
+}
+
+/* Spatial Depth & Soft Shadow Utilities */
+.shadow-soft {
+  box-shadow: 0 10px 30px -10px rgba(23, 44, 70, 0.08);
+}
+
+.shadow-card {
+  box-shadow: 0 4px 20px -2px rgba(23, 44, 70, 0.05);
+}
+
+.shadow-floating {
+  box-shadow: 0 20px 40px -15px rgba(23, 44, 70, 0.12);
+}
+
+/* Glass effect in soft lavender / pure white */
+.glass-lavender {
+  background: rgba(233, 229, 245, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.glass-white {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(227, 223, 214, 0.8);
 }

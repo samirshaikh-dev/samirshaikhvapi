@@ -2,23 +2,44 @@ import { cn } from "@/lib/utils";
 import { Container } from "./container";
 
 /**
- * Standard semantic section wrapper.
- * Enforces single-line desktop headings with no preamble paragraph (per project design directives).
+ * Editorial Section wrapper.
+ * Strictly adheres to project design directives:
+ * - Single-line desktop H2 headings with strong visual hierarchy.
+ * - No preamble fluff paragraphs placed directly under headings.
+ * - Warm Ivory background with subtle border dividing sections.
  */
-export function Section({ id, title, subtitle, className, children, ...props }) {
+export function Section({
+  id,
+  badge,
+  title,
+  description,
+  className,
+  containerClassName,
+  children,
+  ...props
+}) {
   return (
     <section
       id={id}
-      className={cn("py-12 sm:py-16 border-t border-zinc-200/60 dark:border-zinc-800/60", className)}
+      className={cn("py-16 sm:py-24 border-t border-[#E3DFD6]/75 relative", className)}
       {...props}
     >
-      <Container>
+      <Container className={containerClassName}>
         {title && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 md:whitespace-nowrap">
+          <div className="mb-12 sm:mb-16 max-w-2xl">
+            {badge && (
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#F26A3D] mb-2">
+                {badge}
+              </span>
+            )}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#172C46] leading-tight">
               {title}
             </h2>
-            {/* Note: In adherence to project guidelines, no intro paragraph is placed directly beneath <h2>. Content is organized in components. */}
+            {description && (
+              <p className="mt-3 text-base sm:text-lg text-[#626A73] leading-relaxed">
+                {description}
+              </p>
+            )}
           </div>
         )}
         {children}

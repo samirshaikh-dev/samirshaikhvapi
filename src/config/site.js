@@ -2,33 +2,41 @@ import { APP_CONFIG, NAV_LINKS } from "@/lib/constants";
 
 export const APP_NAME = APP_CONFIG.name;
 export const SITE_NAME = APP_CONFIG.name;
-export const APP_TAGLINE = "Freelance Website Developer & Digital Solutions in Vapi, Gujarat";
-export const APP_DESCRIPTION =
-  "Looking for a website developer in Vapi? I build modern business websites, industrial websites, web applications and AI-powered experiences for growing businesses.";
+export const APP_TAGLINE = APP_CONFIG.tagline;
+export const APP_DESCRIPTION = APP_CONFIG.description;
 export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://samirshaikh.dev";
-export const SUPPORT_EMAIL = "shaikh.samir.work@gmail.com";
+export const SUPPORT_EMAIL = APP_CONFIG.email;
+export const PHONE_NUMBER = APP_CONFIG.phone;
+export const WHATSAPP_URL = APP_CONFIG.whatsappUrl;
 export const TWITTER_HANDLE = undefined;
 export const GOOGLE_SITE_VERIFICATION = undefined;
 export const BING_SITE_VERIFICATION = undefined;
-export const OG_IMAGE_PATH = "/og.png";
+export const OG_IMAGE_PATH = "/og-image.png";
 export const SAME_AS_LINKS = [
-  "https://github.com/samirshaikh-dev",
-  "https://www.linkedin.com/in/samirshaikh-dev/",
-  "https://www.instagram.com/samirshaikh_78/",
+  APP_CONFIG.githubUrl,
+  APP_CONFIG.linkedinUrl,
+  APP_CONFIG.instagramUrl,
+  APP_CONFIG.technicalPortfolioUrl,
 ];
 
 export const siteConfig = {
   name: APP_NAME,
   title: APP_CONFIG.title,
+  tagline: APP_TAGLINE,
   description: APP_DESCRIPTION,
   email: SUPPORT_EMAIL,
+  phone: PHONE_NUMBER,
+  phoneFormatted: APP_CONFIG.phoneFormatted,
+  whatsappUrl: WHATSAPP_URL,
   location: APP_CONFIG.location,
+  coverageAreas: APP_CONFIG.coverageAreas,
   url: APP_URL,
   ogImage: OG_IMAGE_PATH,
   links: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    twitter: "https://x.com",
+    github: APP_CONFIG.githubUrl,
+    linkedin: APP_CONFIG.linkedinUrl,
+    instagram: APP_CONFIG.instagramUrl,
+    technicalPortfolio: APP_CONFIG.technicalPortfolioUrl,
   },
   navItems: NAV_LINKS,
 };

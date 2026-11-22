@@ -1,10 +1,22 @@
 import { cn } from "@/lib/utils";
 
-export function Badge({ className, children, ...props }) {
+/**
+ * Warm Luxury Badge component.
+ * Uses Soft Lavender (#E9E5F5), Warm Ivory (#F6F2E9), or subtle borders per docs/DESIGN.MD.
+ */
+export function Badge({ variant = "lavender", className, children, ...props }) {
+  const variants = {
+    lavender: "bg-[#E9E5F5] text-[#172C46] border border-[#d6cee8]",
+    ivory: "bg-[#EEEAE1] text-[#172C46] border border-[#E3DFD6]",
+    tangerine: "bg-[#F26A3D]/10 text-[#F26A3D] border border-[#F26A3D]/25 font-semibold",
+    midnight: "bg-[#172C46] text-white border border-[#172C46]",
+  };
+
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
+        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium tracking-wide",
+        variants[variant] || variants.lavender,
         className
       )}
       {...props}

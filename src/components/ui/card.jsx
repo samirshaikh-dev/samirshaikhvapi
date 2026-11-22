@@ -1,14 +1,16 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Compact, intentional card design avoiding bloat and excessive nesting.
- * Follows AVOID.md & compact-card-design rules.
+ * Warm Luxury Card component.
+ * Follows docs/DESIGN.MD (Pure White surfaces #FFFFFF, #E3DFD6 borders, soft spatial depth)
+ * and AVOID.md (no excessive card nesting, intentional visual structure).
  */
-export function Card({ className, children, ...props }) {
+export function Card({ className, children, hover = true, ...props }) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-zinc-200/80 bg-white p-5 shadow-xs transition-all dark:border-zinc-800 dark:bg-zinc-900/60",
+        "rounded-2xl border border-[#E3DFD6] bg-white p-6 sm:p-8 shadow-card transition-all duration-300",
+        hover && "hover:border-[#c9c4b7] hover:shadow-soft",
         className
       )}
       {...props}
