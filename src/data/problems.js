@@ -1,63 +1,109 @@
 /**
  * Business Problems & Practical Solutions.
  * Source: convert.txt §4.2 ("Problem Recognition") & §1 ("What I Can Do for You").
- * Client-centric: Pain Point -> Practical Solution -> Tangible Business Outcome.
+ * Client-centric: Sound familiar? -> What we do -> What changes (Tangible Payoff).
+ * Spelling: "enquiries" (Gujarat / British English local convention).
  */
 
 export const businessProblemsData = [
   {
-    id: "no-inquiries",
-    title: "Website Not Generating Inquiries?",
-    icon: "alert",
+    id: "no-enquiries",
+    title: "Website not getting you enquiries?",
+    tag: "More enquiries",
+    icon: "phone",
+    painHeadline:
+      "Your website is online, but your phone never rings. It's a forgotten brochure:",
+    painCauses: [
+      "Confusing menu",
+      "Slow loading",
+      "No easy way to reach you",
+    ],
     painPoint:
-      "You have a website, but your phone never rings. It sits online like a forgotten digital brochure with confusing navigation, sluggish loading, and no clear way for visitors to contact you.",
+      "Your website is online, but your phone never rings. It sits online like a forgotten brochure: confusing menu, slow loading, and no easy way for visitors to reach you.",
     solution:
-      "Conversion-Driven Business Website: We structure your offerings around what customers care about, add frictionless one-tap WhatsApp dispatch, and optimize for sub-second mobile loading.",
-    outcome: "Turn passive website visitors into qualified incoming phone calls and WhatsApp chats.",
-    tag: "Lead Generation",
+      "Build a site customers can use in seconds. **One tap** sends you a **WhatsApp** message, and it opens instantly even on a slow connection.",
+    outcome:
+      "More calls and WhatsApp messages from people ready to buy.",
+    whatsappMessage: "Hi, my website isn't getting enquiries",
   },
   {
     id: "repetitive-questions",
-    title: "Overwhelmed by Repetitive Inquiries?",
+    title: "Answering the same questions all day?",
+    tag: "24/7 answers",
     icon: "chat",
+    painHeadline:
+      "Your team spends hours typing the same replies, even late into the evening:",
+    painCauses: [
+      "“Is this in stock?”",
+      "“What are your timings and prices?”",
+      "“Can you send a catalogue?”",
+    ],
     painPoint:
-      "Your team spends valuable hours answering the exact same questions daily — product availability, tyre sizes, clinic timings, quotation procedures — even late in the evening.",
+      "Your team spends valuable hours answering the exact same questions daily — stock availability, clinic timings, pricing, and quotations — even late in the evening.",
     solution:
-      "24/7 Business AI Assistant: An intelligent, hallucination-free chatbot trained strictly on your business knowledge that answers customer questions instantly around the clock.",
-    outcome: "Save 10+ hours of staff time weekly while ensuring no potential customer is left waiting.",
-    tag: "Customer Support Automation",
+      "Add a friendly assistant trained on your business. Customers get **instant answers 24/7**, and serious buyers are routed straight to your **WhatsApp**.",
+    outcome:
+      "Save 10+ hours a week without leaving a single customer waiting.",
+    whatsappMessage: "Hi, I spend too much time answering repetitive questions",
   },
   {
     id: "manual-processes",
-    title: "Messy Spreadsheets & Manual Workflows?",
+    title: "Drowning in spreadsheets and paper notes?",
+    tag: "Save manual hours",
     icon: "clock",
+    painHeadline:
+      "Your orders, quotes, and customer follow-ups are scattered everywhere:",
+    painCauses: [
+      "Messy Excel sheets and paper registers",
+      "Lost customer follow-ups",
+      "Hours spent typing out quotes manually",
+    ],
     painPoint:
-      "Managing quotations, product lists, attendee registrations, or customer outreach across scattered Excel sheets, paper notebooks, and manual WhatsApp messaging.",
+      "Managing quotations, order lists, and customer follow-ups across scattered Excel sheets, notebooks, and manual WhatsApp messaging.",
     solution:
-      "Custom Web Applications & Portals: Purpose-built digital tools, quotation generators, and WhatsApp campaign platforms tailored exactly to your internal business procedures.",
-    outcome: "Eliminate manual data entry errors, accelerate quote turnaround, and streamline daily operations.",
-    tag: "Operational Efficiency",
+      "Build simple custom tools for your exact workflow. Create accurate quotes in **two taps** and view every customer order on **one clear screen**.",
+    outcome:
+      "Send quotes in minutes and eliminate manual data entry errors completely.",
+    whatsappMessage: "Hi, I want to simplify my business spreadsheets and quotes",
   },
   {
     id: "outdated-website",
-    title: "Outdated Site Hurting Your Credibility?",
+    title: "Old website hurting your credibility?",
+    tag: "Fresh modern look",
     icon: "refresh",
+    painHeadline:
+      "Your site was built years ago and shows its age whenever a client opens it:",
+    painCauses: [
+      "Broken layout on modern smartphones",
+      "Takes several seconds to open on 4G",
+      "Doesn't reflect how solid your company is",
+    ],
     painPoint:
-      "Your website was built years ago. It looks misaligned on smartphones, loads slowly on 4G/5G, and fails to convince corporate buyers, factory owners, or high-value clients.",
+      "Your website was built years ago. It looks misaligned on smartphones, loads slowly on 4G, and fails to convince corporate buyers, factory owners, or high-value clients.",
     solution:
-      "Complete Website Modernization: Rebuilt on Next.js 16 and React 19 for blazing fast mobile speed, tactile modern design, and zero visual shift — preserving your existing Google rank.",
-    outcome: "Command immediate credibility when clients and procurement managers look up your company.",
-    tag: "Brand Authority",
+      "Rebuild your site to look clean and authoritative. It loads in **under a second** on phones and gives corporate buyers **instant confidence**.",
+    outcome:
+      "Look like the market leader when corporate clients search your business.",
+    whatsappMessage: "Hi, I want to modernize my old website",
   },
   {
     id: "clunky-software",
-    title: "Software Doesn't Fit How You Work?",
+    title: "Paying for software that doesn't fit?",
+    tag: "Tailored tools",
     icon: "cpu",
+    painHeadline:
+      "Standard software is rigid, bloated, and charges you every month:",
+    painCauses: [
+      "Expensive recurring subscription fees",
+      "Dozens of complex features you never use",
+      "Forces your staff to work around its flaws",
+    ],
     painPoint:
       "Off-the-shelf software is expensive, clunky, and forces you to adapt to its rigid structure, charging steep monthly subscriptions for features you never use.",
     solution:
-      "Bespoke Digital Solutions: Direct, collaborative engineering to build only what your business genuinely needs, with full ownership and direct developer support.",
-    outcome: "Simple, reliable software designed around your business — not the other way around.",
-    tag: "Custom Solutions",
+      "Build custom software that does **only what you need**. No extra bloat, **zero monthly license fees**, and you own it outright.",
+    outcome:
+      "Software that fits how your business already runs, backed by direct local support.",
+    whatsappMessage: "Hi, I need custom software tailored to my business",
   },
 ];
