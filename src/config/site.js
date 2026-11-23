@@ -27,6 +27,7 @@ export const siteConfig = {
   email: SUPPORT_EMAIL,
   phone: PHONE_NUMBER,
   phoneFormatted: APP_CONFIG.phoneFormatted,
+  whatsappNumber: APP_CONFIG.whatsappNumber,
   whatsappUrl: WHATSAPP_URL,
   location: APP_CONFIG.location,
   coverageAreas: APP_CONFIG.coverageAreas,

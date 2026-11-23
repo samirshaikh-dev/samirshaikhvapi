@@ -9,7 +9,7 @@ import {
   IconChevronDown,
   IconWhatsApp,
 } from "@/components/ui/icons";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
@@ -181,7 +181,7 @@ export function ProcessSection() {
               aria-label={`Step ${item.step}: ${item.title}`}
               onTap={() => toggleStep(i)}
               onKeyDown={(event) => handleKeyDown(i, event)}
-              className="relative group"
+              className="relative group cursor-pointer min-h-[320px] md:min-h-[360px]"
             >
               {/* Mobile timeline dot */}
               <div
@@ -199,96 +199,132 @@ export function ProcessSection() {
                 )}
               </div>
 
-              <Card
-                as="article"
-                variant="raised"
-                className={cn(
-                  "flex flex-col gap-3 p-5 md:p-4",
-                  isOpen && "border-[#4F46E5]/60"
-                )}
+              {/* Flip card wrapper */}
+              <motion.div
+                animate={{ rotateY: isOpen ? 180 : 0 }}
+                transition={{
+                  duration: reduced ? 0 : 0.5,
+                  ease: "easeInOut",
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative w-full min-h-[360px] md:min-h-[460px]"
               >
-                <div className="flex items-center gap-2">
-                  <span
-                    className={cn(
-                      "hidden md:flex w-2.5 h-2.5 rounded-full shrink-0",
-                      isPassed || isActive ? "bg-[#10B981]" : "bg-[#CBD5E1]"
-                    )}
-                    aria-hidden="true"
-                  />
-                  <span
-                    className={cn(
-                      "font-extrabold tabular-nums",
-                      isActive ? "text-[#4F46E5]" : "text-[#0F172A]"
-                    )}
-                  >
-                    {item.step}
-                  </span>
-                </div>
+                {/* FRONT FACE */}
+                <Card
+                  as="article"
+                  variant="raised"
+                  hover={false}
+                  className={cn(
+                    "backface-hidden absolute inset-0 z-10 flex flex-col gap-3 p-5 md:p-4",
+                    isOpen && "border-[#4F46E5]/60"
+                  )}
+                  style={{ backfaceVisibility: "hidden" }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={cn(
+                        "hidden md:flex w-2.5 h-2.5 rounded-full shrink-0",
+                        isPassed || isActive ? "bg-[#10B981]" : "bg-[#CBD5E1]"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={cn(
+                        "font-extrabold tabular-nums",
+                        isActive ? "text-[#4F46E5]" : "text-[#0F172A]"
+                      )}
+                    >
+                      {item.step}
+                    </span>
+                  </div>
 
-                <h3 className="text-lg font-bold text-[#0F172A]">
-                  {item.title}
-                </h3>
+                  <h3 className="text-lg font-bold text-[#0F172A]">
+                    {item.title}
+                  </h3>
 
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B]">
-                  <IconClock className="w-3.5 h-3.5 shrink-0" />
-                  <span>{item.time}</span>
-                </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B]">
+                    <IconClock className="w-3.5 h-3.5 shrink-0" />
+                    <span>{item.time}</span>
+                  </div>
 
-                <p className="text-sm font-medium text-[#0F172A] leading-relaxed">
-                  {item.deliverable}
-                </p>
+                  <p className="text-sm font-medium text-[#0F172A] leading-relaxed">
+                    {item.deliverable}
+                  </p>
 
-                <p className="text-base font-medium text-[#0F172A] leading-relaxed">
-                  {item.promise}
-                </p>
+                  <p className="text-base font-medium text-[#0F172A] leading-relaxed">
+                    {item.promise}
+                  </p>
 
-                <div className="mt-auto flex items-center gap-2">
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="shrink-0"
-                  >
-                    <IconChevronDown className="w-4 h-4 text-[#64748B]" />
-                  </motion.div>
-                  <span
-                    className="text-xs font-semibold text-[#4F46E5]"
-                  >
-                    {isOpen ? "Show less" : "Show details"}
-                  </span>
-                </div>
-              </Card>
+                  <div className="mt-auto flex items-center gap-2">
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      className="shrink-0"
+                    >
+                      <IconChevronDown className="w-4 h-4 text-[#64748B]" />
+                    </motion.div>
+                    <span className="text-xs font-semibold text-[#4F46E5]">
+                      {isOpen ? "Show less" : "Show details"}
+                    </span>
+                  </div>
+                </Card>
 
-              <AnimatePresence mode="popLayout">
-                {isOpen && (
-                  <motion.div
-                    key={`details-${item.step}`}
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: reduced ? 0.1 : 0.2 }}
-                    className="mt-4 md:mt-3 overflow-hidden"
-                  >
-                    <div className="space-y-3">
-                      <p className="text-sm text-[#334155] leading-relaxed">
-                        {item.description}
-                      </p>
-                      <div className="space-y-2 text-[#0F172A]">
-                        {item.keyPoints.map((point, k) => (
-                          <div key={k} className="flex items-start gap-2">
-                            <IconCheck
-                              className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5"
-                            />
-                            <span className="text-sm leading-relaxed">
-                              {point}
-                            </span>
-                          </div>
-                        ))}
+                {/* BACK FACE */}
+                <motion.div
+                  className={cn(
+                    "backface-hidden absolute inset-0 z-10 flex flex-col gap-3 p-5 md:p-4 rounded-3xl border border-[#CBD5E1]/80 shadow-neu-card",
+                    "bg-[#EEF2F6]"
+                  )}
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isOpen ? 1 : 0 }}
+                  transition={{ duration: reduced ? 0 : 0.2 }}
+                >
+                  <div className="mt-2 mb-2 flex items-center gap-2">
+                    <IconCheck
+                      className="w-4 h-4 text-[#10B981] shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm font-bold text-[#0F172A]">
+                      What you get
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-[#334155] leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  <div className="mt-2 space-y-2 text-[#0F172A]">
+                    {item.keyPoints.map((point, k) => (
+                      <div key={k} className="flex items-start gap-2">
+                        <IconCheck
+                          className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
+                        <span className="text-sm leading-relaxed">
+                          {point}
+                        </span>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    ))}
+                  </div>
+
+                  <div className="mt-auto pt-3 flex items-center gap-2">
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      className="shrink-0"
+                    >
+                      <IconChevronDown className="w-4 h-4 text-[#64748B]" />
+                    </motion.div>
+                    <span className="text-xs font-semibold text-[#4F46E5]">
+                      Show less
+                    </span>
+                  </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           );
         })}

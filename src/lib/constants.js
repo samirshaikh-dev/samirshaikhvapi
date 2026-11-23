@@ -1,3 +1,7 @@
+const WHATSAPP_NUMBER = "918320927182";
+const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi Samir! I would like to discuss a website or software project for my business.";
+
 export const APP_CONFIG = {
   name: "Samir Shaikh",
   title: "Custom Websites & Business Software Developer in Vapi",
@@ -7,7 +11,8 @@ export const APP_CONFIG = {
   email: "shaikh.samir.work@gmail.com",
   phone: "+91 8320927182",
   phoneFormatted: "+91 83209 27182",
-  whatsappUrl: "https://wa.me/918320927182?text=Hi%20Samir!%20I%20would%20like%20to%20discuss%20a%20website%20or%20software%20project%20for%20my%20business.",
+  whatsappNumber: WHATSAPP_NUMBER,
+  whatsappUrl: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`,
   location: "Vapi, Gujarat, India",
   coverageAreas: ["Vapi", "Vapi GIDC", "Dungra", "Pardi", "Sarigam", "Umbergaon", "Silvassa", "Daman"],
   technicalPortfolioUrl: "https://samir-portfolio-dev.vercel.app/",
