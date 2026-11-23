@@ -1,163 +1,153 @@
-# Task: Website-Wide Neumorphism UI Implementation
+# UI Redesign: Glassmorphism + Neumorphism + Spatial Design
 
-Act as a Senior UI/UX Designer and Frontend Engineer specializing in modern design systems.
+Act as a **Senior UI/UX Designer, Creative Frontend Engineer, and Motion Design Specialist**. Analyze the existing project and completely redesign its user interface by combining three modern design approaches:
 
-## Objective
+1. **Glassmorphism** – Translucent surfaces, subtle background blur, layered transparency, and refined borders.
+2. **Neumorphism** – Soft shadows, subtle depth, tactile surfaces, and carefully balanced light and dark contrasts.
+3. **Spatial UI Design** – A sense of depth, floating elements, layered layouts, dimensional compositions, and natural visual hierarchy.
 
-Scan and analyze the entire existing website, understand its current design system, component architecture, layout, and styling, then introduce a cohesive **Neumorphism UI design language** across the website.
+## 1. Design Direction
 
-The goal is to make the interface feel modern, premium, tactile, clean, and visually consistent — not to blindly apply shadows to every element.
+Create a cohesive design system that intelligently combines all three approaches rather than applying them independently.
 
-## 1. Audit the Existing Website
+- Use glassmorphism for overlays, navigation, floating panels, dialogs, and selected content surfaces.
+- Use neumorphism for interactive elements, buttons, controls, cards, and subtle surface treatments.
+- Use spatial design to establish depth, visual hierarchy, layered compositions, and meaningful separation between interface elements.
+
+The final result should feel **premium, modern, sophisticated, immersive, and visually distinctive**, not like a generic UI template.
+
+## 2. Complete Design Freedom
+
+You have complete creative freedom to rethink the existing interface.
+
+- Completely redesign layouts, component structures, spacing, typography, and visual hierarchy.
+- Replace the existing color palette and redefine all design tokens.
+- Choose a new color system based on your design expertise and the project's purpose and audience.
+- Reconsider backgrounds, surface colors, gradients, borders, shadows, radii, and interaction states.
+- Improve navigation, cards, sections, buttons, forms, and responsive layouts.
+- Preserve the existing brand identity only where it genuinely benefits the redesigned experience.
+
+**Do not feel restricted by the existing UI or design system.** Treat the current interface as a functional starting point, not a visual limitation.
+
+## 3. Animation and Motion Design — High Priority
+
+**Make extensive and thoughtful use of animation libraries already installed in the project.**
+
+Before implementing animations:
+
+1. Inspect `package.json` and the existing codebase for installed animation and motion libraries.
+2. Identify their capabilities and reuse them wherever possible.
+3. Prioritize existing libraries such as Framer Motion / Motion, GSAP, AutoAnimate, or other animation packages if they are already available.
+4. Avoid installing another animation library when an existing dependency can accomplish the same task.
+5. Only introduce a new dependency when there is a clear technical or creative benefit.
+
+### Animation Expectations
+
+Use the available animation libraries extensively to create a polished, dynamic experience.
+
+- **Page transitions:** Smooth transitions between routes and page sections.
+- **Scroll animations:** Reveal content progressively as users scroll.
+- **Entrance animations:** Staggered appearances for headings, text, cards, and visual elements.
+- **Micro-interactions:** Responsive hover, click, focus, and active-state animations.
+- **Spatial animations:** Floating elements, subtle parallax, depth transitions, and layered movement.
+- **Card interactions:** Smooth elevation, perspective, tilt, and hover transformations where appropriate.
+- **Navigation:** Animated menus, indicators, dropdowns, and mobile navigation.
+- **Buttons:** Tactile feedback, smooth transitions, and interactive states.
+- **Background effects:** Subtle ambient movement, animated gradients, and light effects where they improve the design.
+- **Loading states:** Elegant transitions, skeletons, and loading indicators where required.
+
+### Motion Quality Rules
+
+- Use intentional motion to guide attention and reinforce hierarchy.
+- Prefer smooth, natural easing over linear or mechanical movement.
+- Combine opacity, transform, scale, blur, and staggered timing thoughtfully.
+- Maintain consistent animation durations and easing across components.
+- Avoid animating everything simultaneously.
+- Avoid excessive parallax, bouncing, spinning, and distracting movement.
+- Use GPU-friendly properties such as `transform` and `opacity` wherever possible.
+- Respect `prefers-reduced-motion`.
+- Ensure animations never interfere with usability, accessibility, or performance.
+
+**Important:** Do not create basic CSS animations from scratch when the installed animation library already provides a cleaner, reusable solution. Use the library's native APIs and capabilities as much as reasonably possible.
+
+## 4. Use Existing Packages and Libraries
+
+**Prefer established external libraries and packages over building complex UI effects from scratch.**
+
+Before implementation:
+- Inspect existing dependencies and identify reusable packages.
+- Reuse installed UI, animation, icon, and styling libraries.
+- Prefer actively maintained, lightweight, production-ready libraries.
+- Avoid unnecessary dependencies and duplicated functionality.
+- Do not reinvent functionality that reliable libraries already provide.
+
+Choose libraries compatible with the project's existing framework and architecture.
+
+## 5. Visual Quality Requirements
+
+- Establish a consistent design-token system using CSS variables.
+- Use multiple surface levels to create realistic depth.
+- Apply shadows carefully rather than excessively.
+- Use backdrop filters selectively to avoid performance issues.
+- Maintain sufficient contrast between text and translucent surfaces.
+- Use subtle gradients and lighting effects only where they improve the composition.
+- Create consistent border radii, spacing, typography, and component dimensions.
+- Avoid excessive blur, unnecessary glow, heavy shadows, and visual clutter.
+
+## 6. Responsive Design
+
+The redesign must be responsive across:
+- Mobile phones
+- Tablets
+- Laptops
+- Desktop and large screens
+
+Do not simply scale down the desktop design. Adapt layouts, spacing, component behavior, animations, and visual hierarchy for each screen size.
+
+Prioritize mobile usability, touch targets, readability, and performance. Avoid hover-dependent interactions on touch devices.
+
+## 7. Implementation Guidelines
 
 Before making changes:
 
-- Scan all pages, routes, and major UI components.
-- Identify the existing color palette, typography, spacing, border radius, and component styles.
-- Review navigation, headers, footers, cards, forms, buttons, inputs, sections, and interactive elements.
-- Identify reusable components and shared styling patterns.
-- Understand the existing responsive breakpoints.
-- Identify visual inconsistencies and opportunities for improvement.
+1. Inspect the project structure, framework, dependencies, and existing architecture.
+2. Understand the purpose of the application and its individual pages.
+3. Identify existing reusable components and areas requiring redesign.
+4. Audit installed animation libraries and their current usage.
+5. Establish the new design direction and color-token system.
+6. Plan reusable visual and motion components.
 
-Do not make assumptions about the architecture. Inspect the actual codebase first.
+During implementation:
 
-## 2. Introduce Neumorphism Design Language
+- Apply the new design consistently across the entire application.
+- Maximize the use of already-installed animation libraries.
+- Create reusable animation variants, transitions, and motion components.
+- Refactor components when necessary.
+- Keep code modular, maintainable, and reusable.
+- Preserve existing functionality, integrations, routing, and business logic.
+- Do not introduce placeholder content or break existing workflows.
+- Avoid unnecessary architectural changes unrelated to the redesign.
 
-Implement a refined, modern Neumorphic design system featuring:
+## 8. Final Quality Checklist
 
-- Soft UI surfaces.
-- Subtle dual-direction shadows.
-- Gentle raised and inset effects.
-- Smooth rounded corners.
-- Low-contrast surface transitions.
-- Subtle depth and tactile interaction states.
-- Clean visual hierarchy.
-- Minimal and purposeful decoration.
-
-Use realistic light and shadow relationships to create depth without making the interface look overly embossed.
-
-## 3. Apply Neumorphism Across Components
-
-Review and update the following wherever appropriate:
-
-**Navigation**
-- Soft-surface navigation elements.
-- Subtle active states.
-- Refined hover interactions.
-
-**Buttons**
-- Raised neumorphic buttons.
-- Pressed/inset states on click.
-- Clear primary and secondary button hierarchy.
-- Accessible contrast and visible focus states.
-
-**Cards and Containers**
-- Soft raised surfaces.
-- Consistent shadow depth.
-- Refined border radius.
-- Proper spacing and visual grouping.
-
-**Forms and Inputs**
-- Subtle inset input fields.
-- Clear focus and validation states.
-- Accessible placeholders and labels.
-- Consistent interaction feedback.
-
-**Sections**
-- Create visual depth through subtle surface variations.
-- Maintain clear separation between content sections.
-- Avoid excessive shadows and unnecessary decorative elements.
-
-**Interactive Elements**
-- Smooth hover, active, focus, and disabled states.
-- Subtle transitions.
-- Consistent tactile feedback.
-
-## 4. Establish a Reusable Design System
-
-Create or update centralized design tokens for:
-
-- Background and surface colors.
-- Primary and secondary text colors.
-- Raised shadows.
-- Inset shadows.
-- Border radius.
-- Spacing.
-- Transition durations.
-- Focus rings.
-- Interactive states.
-
-Use CSS variables or the project's existing styling architecture.
-
-Avoid duplicating shadow and surface definitions across individual components.
-
-## 5. Visual Design Guidelines
-
-Follow these principles:
-
-- Premium, minimal, and modern appearance.
-- Soft shadows instead of harsh drop shadows.
-- Consistent lighting direction.
-- Balanced contrast between surfaces and backgrounds.
-- Generous whitespace.
-- Clear typography hierarchy.
-- Consistent component dimensions.
-- Avoid excessive rounded pills and oversized borders.
-- Avoid making every element look like a separate floating card.
-- Preserve the website's original brand identity.
-
-**Important:** Neumorphism should enhance usability, not compromise it. Maintain sufficient text contrast, recognizable controls, keyboard accessibility, and visible focus indicators.
-
-## 6. Responsive Implementation
-
-Ensure the updated design works consistently across:
-
-- Desktop.
-- Laptop.
-- Tablet.
-- Mobile.
-
-Pay particular attention to:
-- Shadow intensity on smaller screens.
-- Card spacing and stacking.
-- Button touch targets.
-- Navigation usability.
-- Form accessibility.
-- Horizontal overflow.
-
-## 7. Performance and Code Quality
-
-- Reuse existing components wherever possible.
-- Avoid unnecessary dependencies.
-- Avoid excessive CSS filters and expensive effects.
-- Preserve existing functionality and business logic.
-- Maintain semantic HTML.
-- Respect `prefers-reduced-motion`.
-- Avoid introducing layout shifts.
-
-## 8. Validation
-
-After implementation:
-
-- Review every page and route.
-- Check for inconsistent shadows and surface colors.
-- Verify all hover, active, focus, and disabled states.
-- Test responsive layouts.
-- Check existing functionality.
-- Remove obsolete styling where appropriate.
-- Ensure the design feels cohesive across the entire website.
+- [ ] Glassmorphism, neumorphism, and spatial design work together cohesively.
+- [ ] The color palette and design tokens are consistent.
+- [ ] Every page follows the new design language.
+- [ ] Installed animation libraries are utilized extensively and appropriately.
+- [ ] Animations are smooth, meaningful, and consistent.
+- [ ] Scroll, entrance, hover, and interaction animations are implemented where appropriate.
+- [ ] Animation logic is reusable rather than duplicated.
+- [ ] Mobile and desktop experiences are properly optimized.
+- [ ] Accessibility and reduced-motion support are maintained.
+- [ ] Existing application functionality remains intact.
+- [ ] No unnecessary dependencies or performance-heavy effects are introduced.
 
 ## Expected Outcome
 
-Deliver a complete website-wide Neumorphism UI transformation that feels intentionally designed rather than mechanically styled.
+Deliver a complete UI transformation that feels like a carefully art-directed, premium digital product.
 
-The final website should look:
+The three design philosophies should complement each other naturally, creating an immersive interface with sophisticated depth, tactile interactions, and excellent usability.
 
-- Premium and polished.
-- Soft and tactile.
-- Modern and minimal.
-- Consistent across every page.
-- Fully responsive.
-- Accessible and production-ready.
+The motion design should feel intentional and refined, using the project's existing animation ecosystem to its fullest potential.
 
-**Execution Rule:** First inspect the existing website and codebase, then establish the design direction, and finally implement it systematically. Do not stop after producing an audit or recommendations. Complete the actual implementation.
+**Do not limit yourself to cosmetic improvements. Make meaningful design decisions and deliver a genuinely redesigned experience.**
