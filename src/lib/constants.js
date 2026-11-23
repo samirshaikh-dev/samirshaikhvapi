@@ -17,12 +17,8 @@ export const APP_CONFIG = {
 };
 
 export const NAV_LINKS = [
-  { label: "Problems Solved", href: "#problems" },
   { label: "Solutions", href: "#services" },
-  { label: "Industries", href: "#industries" },
-  { label: "Case Studies", href: "#projects" },
-  { label: "Why Work With Me", href: "#about" },
-  { label: "How It Works", href: "#process" },
+  { label: "Case Study", href: "#projects" },
+  { label: "Why Me", href: "#about" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
 ];

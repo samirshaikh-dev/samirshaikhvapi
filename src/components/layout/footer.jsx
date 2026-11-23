@@ -19,7 +19,7 @@ export function Footer() {
               {siteConfig.name}<span className="text-[#4F46E5]">.</span>
             </Link>
             <p className="text-sm text-[#475569] max-w-sm leading-relaxed">
-              Independent digital solutions developer in Vapi, Gujarat. Building modern, high-performance websites, industrial product catalogues, and intelligent customer experiences.
+              Custom websites, industrial catalogues, and business software in Vapi, Gujarat. Helping local businesses turn online visitors into paying clients.
             </p>
             <div className="flex items-center gap-2 text-xs text-[#64748B]">
               <IconMapPin className="w-4 h-4 text-[#4F46E5] shrink-0" />
@@ -27,51 +27,28 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Navigation */}
+          {/* Quick Navigation (Clean & uncluttered) */}
           <div className="md:col-span-3 space-y-3">
             <p className="text-xs font-bold uppercase tracking-wider text-[#0F172A]">
               Navigation
             </p>
             <ul className="space-y-2 text-sm text-[#475569]">
+              {siteConfig.navItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-[#4F46E5] transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link href="#problems" className="hover:text-[#4F46E5] transition-colors">
-                  Problems We Solve
-                </Link>
-              </li>
-              <li>
-                <Link href="#services" className="hover:text-[#4F46E5] transition-colors">
-                  Solutions & Services
-                </Link>
-              </li>
-              <li>
-                <Link href="#industries" className="hover:text-[#4F46E5] transition-colors">
-                  Industries Served
-                </Link>
-              </li>
-              <li>
-                <Link href="#projects" className="hover:text-[#4F46E5] transition-colors">
-                  Selected Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="hover:text-[#4F46E5] transition-colors">
-                  Why Work With Me
-                </Link>
-              </li>
-              <li>
-                <Link href="#process" className="hover:text-[#4F46E5] transition-colors">
-                  How We Work
-                </Link>
-              </li>
-              <li>
-                <Link href="#faq" className="hover:text-[#4F46E5] transition-colors">
-                  Frequently Asked Questions
+                <Link href="#contact" className="hover:text-[#4F46E5] transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Direct Contact & Profiles */}
+          {/* Direct Contact & Verified Profiles */}
           <div className="md:col-span-4 space-y-3">
             <p className="text-xs font-bold uppercase tracking-wider text-[#0F172A]">
               Connect & Inquiries
@@ -99,12 +76,12 @@ export function Footer() {
               </a>
               <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-semibold text-[#475569]">
                 <a
-                  href={siteConfig.links.technicalPortfolio}
+                  href={siteConfig.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:text-[#4F46E5] hover:shadow-neu transition-all"
                 >
-                  <span>Technical Portfolio</span>
+                  <span>LinkedIn</span>
                   <IconArrowUpRight className="w-3 h-3" />
                 </a>
                 <a
@@ -114,15 +91,6 @@ export function Footer() {
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:text-[#4F46E5] hover:shadow-neu transition-all"
                 >
                   <span>GitHub</span>
-                  <IconArrowUpRight className="w-3 h-3" />
-                </a>
-                <a
-                  href={siteConfig.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:text-[#4F46E5] hover:shadow-neu transition-all"
-                >
-                  <span>LinkedIn</span>
                   <IconArrowUpRight className="w-3 h-3" />
                 </a>
                 <a

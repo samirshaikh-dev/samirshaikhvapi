@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Section } from "@/components/layout/section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Reveal, RevealGroup } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { useReducedMotion } from "@/lib/motion/use-reduced-motion";
 import { projectsData } from "@/data/projects";
 import { siteConfig } from "@/config/site";
@@ -21,9 +21,7 @@ export function ProjectsSection() {
   const featuredRef = useRef(null);
   const reduced = useReducedMotion();
 
-  const featuredProject =
-    projectsData.find((p) => p.id === "sahara-tyre") || projectsData[0];
-  const otherProjects = projectsData.filter((p) => p.id !== featuredProject.id);
+  const featuredProject = projectsData[0];
 
   useEffect(() => {
     if (reduced) return;
@@ -34,9 +32,9 @@ export function ProjectsSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".pin-visual",
-        { yPercent: 6 },
+        { yPercent: 5 },
         {
-          yPercent: -6,
+          yPercent: -5,
           ease: "none",
           scrollTrigger: {
             trigger: ".pin-visual",
@@ -51,14 +49,16 @@ export function ProjectsSection() {
     return () => ctx.revert();
   }, [reduced]);
 
+  if (!featuredProject) return null;
+
   return (
     <Section
       id="projects"
-      badge="Selected Case Studies"
-      title="Real Solutions I've Built"
-      description="Proven digital platforms delivered for real businesses — solving operational bottlenecks, generating customer inquiries, and automating daily workflows."
+      badge="Client Case Study"
+      title="Real Solutions Delivered"
+      description="See how we helped a local Vapi business replace manual price lists and paper chaos with a modern, high-converting digital platform."
     >
-      <div className="space-y-12 sm:space-y-16">
+      <div className="space-y-10">
         {/* FEATURED CASE STUDY — Sahara Tyre */}
         <div
           ref={featuredRef}
@@ -128,7 +128,7 @@ export function ProjectsSection() {
                 </a>
                 <a
                   href={`https://wa.me/918320927182?text=${encodeURIComponent(
-                    "Hi Samir! I saw the Sahara Tyre digital platform you built and would like a similar solution for my business."
+                    "Hi Samir! I saw the Sahara Tyre digital platform and would like to build a similar solution for my business."
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -205,144 +205,26 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        {/* SUPPORTING CASE STUDIES — 2-Column Grid */}
-        <div>
-          <h3 className="text-lg font-bold text-[#0F172A] mb-6">
-            More Custom Business Solutions & Applications
-          </h3>
-
-          <RevealGroup
-            selector=":scope > article"
-            stagger={0.1}
-            className="grid gap-6 md:grid-cols-2"
-          >
-            {otherProjects.map((project) => (
-              <article
-                key={project.id}
-                className="group flex flex-col justify-between neu-plate-interactive rounded-3xl p-7 sm:p-8"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#4F46E5]">
-                        {project.category}
-                      </span>
-                      <h4 className="text-xl font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors mt-0.5">
-                        {project.title}
-                      </h4>
-                    </div>
-                    {project.liveUrl && (
-                      <Badge variant="inset" className="text-[11px]">
-                        Live Demo
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* Challenge */}
-                  <div className="rounded-2xl bg-[#E8EEF5] p-3.5 border border-[#CBD5E1]/40 shadow-neu-inset-sm space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose-600 block">
-                      The Challenge
-                    </span>
-                    <p className="text-xs text-[#475569] leading-relaxed">
-                      {project.clientProblem}
-                    </p>
-                  </div>
-
-                  {/* Solution */}
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#4F46E5] block">
-                      The Solution
-                    </span>
-                    <p className="text-xs sm:text-sm text-[#0F172A] leading-relaxed font-medium">
-                      {project.solutionImplemented}
-                    </p>
-                  </div>
-
-                  {/* Outcome */}
-                  <div className="rounded-xl bg-[#EEF2F6] p-3 border border-white/80 shadow-neu-sm flex items-start gap-2 text-xs text-[#0F172A] font-semibold">
-                    <IconCheck className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
-                    <span>
-                      <strong className="text-[#10B981]">Outcome:</strong>{" "}
-                      {project.businessOutcome}
-                    </span>
-                  </div>
-
-                  {/* Supporting Tech Stack */}
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-xl bg-[#E8EEF5] px-2.5 py-1 text-[11px] font-semibold text-[#64748B] shadow-neu-inset-sm border border-[#CBD5E1]/40"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-5 mt-5 border-t border-[#CBD5E1]/40 flex items-center justify-between">
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors"
-                    >
-                      <span>Explore Live Application</span>
-                      <IconArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  ) : project.githubUrl ? (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors"
-                    >
-                      <span>View Architecture on GitHub</span>
-                      <IconArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  ) : (
-                    <span className="text-xs text-[#64748B]">
-                      Custom Enterprise Solution
-                    </span>
-                  )}
-                  <a
-                    href={`https://wa.me/918320927182?text=${encodeURIComponent(
-                      `Hi Samir! I'm interested in building a solution similar to "${project.title}" for my business.`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#10B981] hover:underline"
-                  >
-                    <IconWhatsApp className="w-3.5 h-3.5" />
-                    <span>Discuss Similar</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </RevealGroup>
-        </div>
-
-        {/* Technical portfolio callout (repositioned as engineering credibility) */}
+        {/* Project Section Client Action Banner */}
         <Reveal variant="fade">
           <div className="rounded-3xl border border-white/85 bg-[#EEF2F6] p-7 sm:p-9 shadow-neu flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1.5 text-center sm:text-left">
               <h4 className="text-base font-bold text-[#0F172A]">
-                Need deep technical architecture or enterprise microservices?
+                Want a custom digital catalogue or storefront for your products?
               </h4>
               <p className="text-xs sm:text-sm text-[#475569]">
-                For enterprise CTOs and tech leads seeking GraphQL DataLoader metrics, backend microservices, and database tuning benchmarks.
+                Let's discuss how to organize your offerings so customers can browse easily and reach out in one tap.
               </p>
             </div>
             <a
-              href={siteConfig.links.technicalPortfolio}
+              href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0"
             >
-              <Button variant="secondary" size="md" className="gap-2 font-semibold">
-                <span>View Engineering Case Studies</span>
-                <IconArrowUpRight className="w-4 h-4" />
+              <Button variant="whatsapp" size="md" className="gap-2 font-bold">
+                <IconWhatsApp className="w-4 h-4 text-white" />
+                <span>Discuss Your Storefront</span>
               </Button>
             </a>
           </div>

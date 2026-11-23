@@ -21,7 +21,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // One observer drives the active state for all seven in-page links.
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
 
@@ -83,163 +82,130 @@ export function Header() {
     return () => query.removeEventListener("change", handleChange);
   }, [mobileMenuOpen, closeMenu]);
 
-  const handleDrawerLinkClick = (href) => {
-    setMobileMenuOpen(false);
-    requestAnimationFrame(() => {
-      const target = document.getElementById(href.slice(1));
-      if (target) {
-        target.setAttribute("tabindex", "-1");
-        target.focus({ preventScroll: true });
-      } else {
-        toggleRef.current?.focus();
-      }
-    });
-  };
-
-  const navLinkProps = (item) => ({
-    "aria-current": activeHref === item.href ? "location" : undefined,
-  });
-
   return (
     <header
-      className={`site-header sticky top-0 z-50 w-full border-b border-[var(--border-soft)] bg-[var(--surface-canvas)] ${
-        isScrolled ? "surface-raised-sm" : ""
+      className={`sticky top-0 z-50 w-full transition-all duration-300 border-b border-white/80 bg-[#EEF2F6]/92 backdrop-blur-md ${
+        isScrolled ? "shadow-neu-sm py-2.5" : "py-3.5"
       }`}
     >
-      <Container className="flex min-h-16 items-center justify-between gap-4">
+      <Container className="flex items-center justify-between gap-4">
+        {/* Brand Wordmark */}
         <Link
           href="/"
-          className="inline-flex min-h-11 flex-col justify-center rounded-[var(--radius-control)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--midnight)]"
+          className="inline-flex flex-col justify-center rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]"
           aria-label={`${siteConfig.name} - Homepage`}
         >
-          <span className="text-base font-bold tracking-tight text-[var(--text-primary)] sm:text-lg">
-            {siteConfig.name}
+          <span className="text-lg font-extrabold tracking-tight text-[#0F172A]">
+            {siteConfig.name}<span className="text-[#4F46E5]">.</span>
           </span>
-          <span className="hidden text-[11px] font-medium tracking-wider text-[var(--text-secondary)] uppercase lg:block">
-            Vapi, Gujarat · Independent Developer
+          <span className="text-[10px] font-semibold tracking-wider text-[#64748B] uppercase">
+            Vapi, Gujarat · Web & Software
           </span>
         </Link>
 
+        {/* Desktop Navigation — 4 Reduced Clean Links */}
         <nav
-          className="hidden items-center gap-1 sm:flex lg:gap-2"
+          className="hidden items-center gap-1.5 sm:flex bg-[#E8EEF5] p-1.5 rounded-2xl shadow-neu-inset-sm border border-[#CBD5E1]/40"
           aria-label="Main Navigation"
         >
-          {siteConfig.navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="nav-link px-2 text-[11px] font-semibold lg:px-3 lg:text-sm"
-              {...navLinkProps(item)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {siteConfig.navItems.map((item) => {
+            const isActive = activeHref === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3.5 py-1.5 text-xs font-semibold rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] ${
+                  isActive
+                    ? "bg-[#EEF2F6] text-[#4F46E5] shadow-neu-sm"
+                    : "text-[#334155] hover:text-[#4F46E5] hover:bg-[#EEF2F6]/60"
+                }`}
+                aria-current={isActive ? "location" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
-          <Button
-            as="a"
+        {/* Primary WhatsApp Action */}
+        <div className="hidden sm:flex items-center gap-2">
+          <a
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            variant="lavender"
-            size="sm"
-            className="ui-icon-button lg:hidden"
-            aria-label="WhatsApp Us — chat directly with Samir"
+            aria-label="Chat directly on WhatsApp"
           >
-            <IconWhatsApp className="h-5 w-5 text-[var(--midnight)]" />
-          </Button>
-          <Button
-            as="a"
-            href={siteConfig.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="lavender"
-            size="sm"
-            className="hidden gap-2 lg:inline-flex"
-            aria-label="WhatsApp Us — chat directly with Samir"
-          >
-            <IconWhatsApp className="h-4 w-4 text-[var(--midnight)]" />
-            <span>WhatsApp Us</span>
-          </Button>
+            <Button
+              variant="whatsapp"
+              size="sm"
+              className="gap-2 text-xs font-bold px-4"
+            >
+              <IconWhatsApp className="w-4 h-4 text-white" />
+              <span>WhatsApp Us</span>
+            </Button>
+          </a>
         </div>
 
-        <div className="flex items-center gap-2 sm:hidden">
-          <Button
-            as="a"
+        {/* Mobile menu toggle & quick chat */}
+        <div className="flex sm:hidden items-center gap-2">
+          <a
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            variant="lavender"
-            size="sm"
-            className="ui-icon-button"
-            aria-label="WhatsApp Us — chat directly with Samir"
+            className="p-2.5 text-white bg-gradient-to-br from-[#10B981] to-[#059669] shadow-neu-whatsapp rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+            aria-label="Open WhatsApp conversation"
           >
-            <IconWhatsApp className="h-5 w-5 text-[var(--midnight)]" />
-          </Button>
-          <Button
+            <IconWhatsApp className="w-4 h-4 text-white" />
+          </a>
+          <button
             ref={toggleRef}
             type="button"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            variant="ghost"
-            size="sm"
-            className="ui-icon-button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2.5 text-[#0F172A] bg-[#EEF2F6] shadow-neu-sm border border-white/80 active:shadow-neu-pressed rounded-2xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
           >
-            {mobileMenuOpen ? (
-              <IconX className="h-5 w-5" />
-            ) : (
-              <IconMenu className="h-5 w-5" />
-            )}
-          </Button>
+            {mobileMenuOpen ? <IconX className="w-5 h-5" /> : <IconMenu className="w-5 h-5" />}
+          </button>
         </div>
       </Container>
 
-      <div
-        id="mobile-navigation"
-        ref={panelRef}
-        hidden={!mobileMenuOpen}
-        className="mobile-panel sm:hidden"
-      >
-        <nav aria-label="Mobile Navigation" className="flex flex-col px-4 py-4">
-          {siteConfig.navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => handleDrawerLinkClick(item.href)}
-              className="nav-link w-full justify-start text-base"
-              {...navLinkProps(item)}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-soft)] pt-4">
-            <Button
-              as="a"
-              href={siteConfig.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => closeMenu({ focusToggle: true })}
-              variant="primary"
-              className="w-full gap-2"
-            >
-              <IconWhatsApp className="h-5 w-5 text-[var(--midnight)]" />
-              <span>Start WhatsApp Conversation</span>
-            </Button>
-            <Button
-              as="a"
-              href={`tel:${siteConfig.phone}`}
-              onClick={() => closeMenu({ focusToggle: true })}
-              variant="secondary"
-              className="w-full"
-            >
-              Call {siteConfig.phoneFormatted}
-            </Button>
-          </div>
-        </nav>
-      </div>
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div
+          ref={panelRef}
+          id="mobile-navigation"
+          className="sm:hidden border-b border-white/80 bg-[#EEF2F6] px-5 pt-3 pb-6 shadow-neu-lg"
+        >
+          <nav className="flex flex-col gap-2" aria-label="Mobile Navigation">
+            {siteConfig.navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => closeMenu()}
+                className="rounded-2xl px-4 py-3 text-sm font-semibold text-[#0F172A] bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:text-[#4F46E5] active:shadow-neu-pressed transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="mt-2 pt-3 border-t border-[#CBD5E1]/50 flex flex-col gap-2">
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => closeMenu()}
+                className="w-full"
+              >
+                <Button variant="whatsapp" className="w-full gap-2 font-bold">
+                  <IconWhatsApp className="w-4 h-4 text-white" />
+                  <span>Chat on WhatsApp</span>
+                </Button>
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
