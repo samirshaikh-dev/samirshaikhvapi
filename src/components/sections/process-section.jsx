@@ -19,7 +19,7 @@ const steps = [
   {
     step: "02",
     title: "Editorial Design & Prototype",
-    subtitle: "Clean, Warm Luxury visual identity",
+    subtitle: "Tactile Neumorphic visual identity",
     description:
       "Before writing code, we establish the layout, color palette, and mobile presentation. You see how your website will look and feel, ensuring it looks distinct and premium rather than like a generic template.",
     keyPoints: [
@@ -73,34 +73,35 @@ export function ProcessSection() {
           <Card
             key={item.step}
             as="article"
-            className="flex flex-col justify-between hover:border-[#F26A3D]/40 hover:-translate-y-1 transition-all duration-300"
+            variant="raised"
+            className="flex flex-col justify-between group"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-3xl font-extrabold text-[#F26A3D]/80">
+                <span className="text-3xl font-extrabold text-[#4F46E5]/80 tabular-nums">
                   {item.step}
                 </span>
-                <span className="h-2 w-2 rounded-full bg-[#172C46]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#4F46E5] shadow-neu-sm" />
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-[#172C46]">
+                <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs font-semibold text-[#F26A3D] mt-0.5">
+                <p className="text-xs font-semibold text-[#4F46E5] mt-0.5">
                   {item.subtitle}
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#626A73] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
                 {item.description}
               </p>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-[#E3DFD6] space-y-1.5 text-xs text-[#172C46]">
+            <div className="pt-4 mt-4 border-t border-[#CBD5E1]/40 space-y-1.5 text-xs text-[#0F172A]">
               {item.keyPoints.map((point, idx) => (
-                <div key={idx} className="flex items-start gap-1.5">
-                  <IconCheck className="w-3.5 h-3.5 text-[#F26A3D] shrink-0 mt-0.5" />
+                <div key={idx} className="flex items-start gap-1.5 font-medium">
+                  <IconCheck className="w-3.5 h-3.5 text-[#4F46E5] shrink-0 mt-0.5" />
                   <span>{point}</span>
                 </div>
               ))}

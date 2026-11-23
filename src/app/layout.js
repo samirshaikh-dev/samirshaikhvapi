@@ -26,11 +26,11 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: pageJsonLdString }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F6F2E9] text-[#172C46] font-sans selection:bg-[#F26A3D] selection:text-white">
-        {/* Accessible Skip Link (Accessibility requirement from accessibility-engineer & AI_RULE.md) */}
+      <body className="min-h-full flex flex-col bg-[#EEF2F6] text-[#0F172A] font-sans selection:bg-[#4F46E5] selection:text-white">
+        {/* Accessible Skip Link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-[#F26A3D] text-[#172C46] px-4 py-2 rounded-full font-semibold shadow-lg focus:outline-none focus:ring-2 focus:ring-[#172C46]"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-[#4F46E5] text-white px-4 py-2 rounded-xl font-semibold shadow-neu-lg focus:outline-none focus:ring-2 focus:ring-[#4F46E5]"
         >
           Skip to main content
         </a>

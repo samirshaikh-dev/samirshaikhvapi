@@ -12,6 +12,30 @@
   --tangerine-hover: #DF572A;
   --lavender: #E9E5F5;
   --border: #E3DFD6;
+
+  /* Semantic aliases — components consume roles, not raw palette values. */
+  --surface-canvas: var(--background);
+  --surface-raised: var(--surface);
+  --surface-sunken: var(--surface-subtle);
+  --surface-accent: var(--lavender);
+  --surface-action: var(--tangerine);
+  --text-primary: var(--foreground);
+  --text-secondary: var(--midnight-secondary);
+  --border-soft: rgba(23, 44, 70, 0.15);
+
+  /* Quiet Neumorphism: dual-direction light/shadow, controls only. */
+  --shadow-raised-sm: -1px -1px 2px rgba(255, 255, 255, 0.75), 2px 3px 8px rgba(23, 44, 70, 0.06);
+  --shadow-raised-md: -2px -2px 4px rgba(255, 255, 255, 0.85), 6px 8px 18px rgba(23, 44, 70, 0.1);
+  --shadow-inset: inset 1px 1px 2px rgba(23, 44, 70, 0.08), inset -1px -1px 2px rgba(255, 255, 255, 0.85);
+  --shadow-pressed: inset 2px 2px 5px rgba(23, 44, 70, 0.12), inset -1px -1px 3px rgba(255, 255, 255, 0.7);
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-panel: 1rem;
+
+  --duration-feedback: 120ms;
+  --duration-control: 160ms;
+  --duration-disclosure: 200ms;
 }
 
 @theme inline {
@@ -19,6 +43,11 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-subtle: var(--surface-subtle);
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-accent: var(--surface-accent);
+  --color-surface-action: var(--surface-action);
   --color-midnight: var(--midnight);
   --color-midnight-secondary: var(--midnight-secondary);
   --color-midnight-muted: var(--midnight-muted);
@@ -29,23 +58,63 @@
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Light Theme Only per docs/DESIGN.MD (Section 1 & 2) */
+/* Light theme only. */
 html {
-  background-color: #F6F2E9;
-  color: #172C46;
+  background-color: var(--surface-canvas);
+  color: var(--text-primary);
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #F6F2E9;
-  color: #172C46;
+  background-color: var(--surface-canvas);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible Animation Tiering (WCAG 2.3.3 / C39 per .agents/skills/accessible-animation/SKILL.md) */
+/* Override utilities inherited from the untouched root layout. */
+body[class] {
+  background-color: var(--surface-canvas);
+  color: var(--text-primary);
+}
+
+body.selection\:text-white::selection,
+.selection\:text-white::selection,
+::selection {
+  background-color: var(--surface-action);
+  color: var(--text-primary);
+}
+
+body > a[href="#main-content"]:focus,
+body > a[href="#main-content"]:focus-visible {
+  border: 1px solid var(--midnight);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-action);
+  box-shadow: var(--shadow-raised-sm);
+  color: var(--text-primary);
+  outline: 2px solid var(--midnight);
+  outline-offset: 2px;
+}
+
+/* Keep the existing scroll rail, but within this palette and without gradients. */
+.fixed.top-0.left-0.right-0[aria-hidden="true"] {
+  background-color: var(--surface-canvas);
+  box-shadow: var(--shadow-inset);
+}
+
+.fixed.top-0.left-0.right-0[aria-hidden="true"] > div {
+  background-image: none !important;
+  background-color: var(--midnight);
+}
+
+section[id],
+main#main-content {
+  scroll-margin-top: 5rem;
+}
+
+/* Accessible motion tiering: global backstop plus meaningful feedback only. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -55,47 +124,361 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .ui-button:active {
+    transform: none !important;
+  }
+
+  .ui-button,
+  .ui-icon-button,
+  .site-header,
+  .mobile-panel,
+  .surface-raised-sm,
+  .surface-raised-md,
+  .surface-inset,
+  .surface-pressed,
+  .form-control,
+  .nav-link,
+  .footer-link,
+  .status-row,
+  .faq-disclosure,
+  .faq-chevron,
+  .compact-card {
+    transition-property: background-color, border-color, box-shadow, color !important;
+    transition-duration: var(--duration-feedback) !important;
+    transition-timing-function: ease-out !important;
+  }
 }
 
-/* Editorial selection style */
-::selection {
-  background-color: #F26A3D;
-  color: #FFFFFF;
+/* Surface utilities. Depth is limited to controls, wells, disclosures, panel. */
+.surface-raised-sm {
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-raised-sm);
 }
 
-/* Spatial Depth & Soft Shadow Utilities */
-.shadow-soft {
-  box-shadow: 0 10px 30px -10px rgba(23, 44, 70, 0.08);
+.surface-raised-md {
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-raised-md);
 }
 
-.shadow-card {
-  box-shadow: 0 4px 20px -2px rgba(23, 44, 70, 0.05);
+.surface-inset {
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-inset);
 }
 
-.shadow-floating {
-  box-shadow: 0 20px 40px -15px rgba(23, 44, 70, 0.12);
+.surface-pressed {
+  box-shadow: var(--shadow-pressed);
 }
 
-/* Glass effect in soft lavender / pure white */
-.glass-lavender {
-  background: rgba(233, 229, 245, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+.compact-card {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  background-color: var(--surface-raised);
 }
 
-.glass-white {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(227, 223, 214, 0.8);
+/* Buttons and icon controls: solid boundary, short feedback, visible focus. */
+.ui-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--midnight);
+  border-radius: var(--radius-control);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--duration-control) ease-out,
+    border-color var(--duration-control) ease-out,
+    box-shadow var(--duration-control) ease-out,
+    color var(--duration-control) ease-out;
 }
 
-/* ------------------------------------------------------------------ *
- * Fluid editorial typography (Tubik 2026: clamp()-based, not breakpoints)
- * Replace fixed step sizes with smooth viewport-scaled clamps so type
- * flows between mobile and ultrawide without snapping at breakpoints.
- * ------------------------------------------------------------------ */
+.ui-button:focus-visible {
+  outline: 2px solid var(--midnight);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--surface-raised), var(--shadow-raised-sm);
+}
+
+.ui-button:active:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: var(--shadow-pressed);
+  transform: translateY(1px);
+}
+
+.ui-button:disabled,
+.ui-button[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: var(--shadow-inset);
+  transform: none;
+}
+
+.ui-button--primary {
+  background-color: var(--surface-action);
+  border-color: var(--midnight);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.ui-button--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--surface-action);
+  box-shadow: var(--shadow-raised-md);
+}
+
+.ui-button--secondary {
+  background-color: var(--surface-raised);
+  border-color: var(--midnight-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.ui-button--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-raised-md);
+}
+
+.ui-button--outline {
+  background-color: transparent;
+  border-color: var(--midnight);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.ui-button--outline:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--surface-canvas);
+  box-shadow: var(--shadow-raised-md);
+}
+
+.ui-button--midnight {
+  background-color: var(--midnight);
+  border-color: var(--midnight);
+  color: var(--surface-raised);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.ui-button--midnight:hover:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: var(--shadow-raised-md);
+}
+
+.ui-button--ghost {
+  background-color: transparent;
+  border-color: var(--midnight-secondary);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.ui-button--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--surface-sunken);
+  box-shadow: var(--shadow-inset);
+}
+
+.ui-button--lavender {
+  background-color: var(--surface-accent);
+  border-color: var(--midnight-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.ui-icon-button {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0;
+}
+
+/* Form wells. */
+.form-control {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--midnight-secondary);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-canvas);
+  box-shadow: var(--shadow-inset);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition:
+    background-color var(--duration-feedback) ease-out,
+    border-color var(--duration-feedback) ease-out,
+    box-shadow var(--duration-feedback) ease-out;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+.form-control:hover:not(:disabled) {
+  border-color: var(--midnight);
+}
+
+.form-control:focus {
+  outline: 2px solid var(--midnight);
+  outline-offset: 2px;
+  background-color: var(--surface-raised);
+  box-shadow: var(--shadow-inset);
+}
+
+.form-control:disabled {
+  opacity: 0.6;
+}
+
+.form-control[aria-invalid="true"] {
+  border-color: var(--midnight);
+  box-shadow: var(--shadow-pressed);
+}
+
+.form-error {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Navigation: underline/current state is not color-only. */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-control) ease-out,
+    box-shadow var(--duration-control) ease-out,
+    color var(--duration-control) ease-out;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  left: 0.5rem;
+  height: 2px;
+  background-color: var(--midnight);
+  transform: scaleX(0);
+  transition: transform var(--duration-control) ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link[aria-current="location"]::after {
+  transform: scaleX(1);
+}
+
+.nav-link[aria-current="location"] {
+  background-color: var(--surface-sunken);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--midnight);
+  outline-offset: 2px;
+}
+
+.site-header {
+  transition:
+    background-color var(--duration-control) ease-out,
+    border-color var(--duration-control) ease-out,
+    box-shadow var(--duration-control) ease-out;
+}
+
+.site-header.surface-raised-sm {
+  border-radius: 0;
+}
+
+.mobile-panel {
+  background-color: var(--surface-canvas);
+  border-bottom: 1px solid var(--midnight-secondary);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  background-color: var(--surface-raised);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--midnight);
+  outline-offset: 2px;
+}
+
+/* Form status: prefix plus text, never color alone. */
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--midnight-secondary);
+  border-radius: var(--radius-control);
+  background-color: var(--surface-sunken);
+  box-shadow: var(--shadow-inset);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.status-row strong {
+  color: var(--text-primary);
+}
+
+/* Native disclosure: closed rows flat; only the open row lifts. */
+.faq-disclosure {
+  border: 1px solid var(--midnight-secondary);
+  border-radius: var(--radius-card);
+  background-color: var(--surface-raised);
+  transition:
+    border-color var(--duration-disclosure) ease-out,
+    box-shadow var(--duration-disclosure) ease-out;
+}
+
+.faq-disclosure[open] {
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.faq-summary {
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--radius-card);
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary:focus-visible {
+  outline: 2px solid var(--midnight);
+  outline-offset: -3px;
+}
+
+.faq-chevron {
+  transition:
+    background-color var(--duration-disclosure) ease-out,
+    color var(--duration-disclosure) ease-out,
+    transform var(--duration-disclosure) ease-out;
+}
+
+.faq-disclosure[open] .faq-chevron {
+  background-color: var(--surface-action);
+  color: var(--text-primary);
+  transform: rotate(180deg);
+}
+
+/* Fluid editorial typography. */
 .type-display {
   font-size: clamp(2.5rem, 1.6rem + 4.4vw, 6rem);
   line-height: 1.05;
@@ -121,48 +504,29 @@ body {
   line-height: 1.65;
 }
 
-/* ------------------------------------------------------------------ *
- * Raw-structural aesthetic (Tubik 2026 "wireframe / grid as foreground")
- * A subtle foreground hairline grid used sparingly as a structural
- * motif — not decoration. Low-contrast ivory tones only.
- * ------------------------------------------------------------------ */
-.bg-grid-hairline {
-  background-image:
-    linear-gradient(to right, rgba(23, 44, 70, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 44, 70, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-/* Editorial hairline rule */
 .rule-hairline {
-  border-color: #e3dfd6;
+  border-color: var(--border);
 }
 
-/* Underline that draws in on hover — purposeful link affordance */
 .link-underline {
   position: relative;
 }
+
 .link-underline::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -2px;
-  height: 1.5px;
+  height: 2px;
   width: 100%;
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--duration-control) cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .link-underline:hover::after,
 .link-underline:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/* Tier-2 override: under reduced motion the underline should not slide */
-@media (prefers-reduced-motion: reduce) {
-  .link-underline::after {
-    transition: none;
-  }
 }

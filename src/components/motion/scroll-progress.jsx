@@ -5,12 +5,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
- * ScrollProgress — a thin reading-progress line pinned to the top of the viewport.
- *
- * Communicates position within the page (purposeful motion, Tubik 2026). Uses a
- * transform scaleX tied to overall document scroll progress via ScrollTrigger scrub,
- * so it costs one transform per frame and never triggers layout. Safe under reduced
- * motion (it is a position indicator, not self-motion) — it simply tracks scroll.
+ * ScrollProgress — Neumorphic tactile reading-progress indicator.
+ * Features an inset track groove with an Electric Indigo gradient fill.
  */
 export function ScrollProgress() {
   const barRef = useRef(null);
@@ -40,11 +36,11 @@ export function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-transparent pointer-events-none"
+      className="fixed top-0 left-0 right-0 z-[60] h-1.5 bg-[#E2E8F0] shadow-neu-inset-sm pointer-events-none"
     >
       <div
         ref={barRef}
-        className="h-full w-full origin-left scale-x-0 bg-[#F26A3D]"
+        className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[#4F46E5] via-[#6366F1] to-[#F97316]"
       />
     </div>
   );

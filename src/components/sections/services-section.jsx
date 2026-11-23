@@ -36,7 +36,7 @@ export function ServicesSection() {
       <RevealGroup
         selector=":scope > article"
         stagger={0.08}
-        className="grid gap-px sm:gap-0 md:grid-cols-2 lg:grid-cols-3 bg-[#E3DFD6] border border-[#E3DFD6] rounded-3xl overflow-hidden"
+        className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
       >
         {servicesData.map((service) => {
           const IconComponent = iconMap[service.id] || IconLaptop;
@@ -48,46 +48,40 @@ export function ServicesSection() {
           return (
             <article
               key={service.id}
-              className="group relative bg-[#F6F2E9] p-7 sm:p-9 flex flex-col justify-between transition-colors duration-300 hover:bg-white"
+              className="group relative neu-plate-interactive rounded-3xl p-7 sm:p-9 flex flex-col justify-between"
             >
-              {/* Purposeful hover: tangerine rail grows in from the top */}
-              <span
-                aria-hidden="true"
-                className="absolute top-0 left-0 h-0.5 w-0 bg-[#F26A3D] transition-all duration-500 group-hover:w-full"
-              />
-
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                  <div className="rounded-xl bg-white border border-[#E3DFD6] p-3 text-[#172C46] shadow-xs transition-all duration-300 group-hover:bg-[#F26A3D] group-hover:text-white group-hover:border-[#F26A3D] group-hover:-translate-y-0.5">
+                  <div className="rounded-2xl bg-[#EEF2F6] border border-white/90 p-3 text-[#4F46E5] shadow-neu-sm transition-all duration-300 group-hover:shadow-neu-inset-sm group-hover:text-[#4338CA]">
                     <IconComponent className="w-6 h-6" />
                   </div>
-                  <Badge variant="ivory" className="text-[11px]">
+                  <Badge variant="inset" className="text-[11px]">
                     Tailored Solution
                   </Badge>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold text-[#172C46] transition-colors group-hover:text-[#F26A3D]">
+                  <h3 className="text-xl font-bold text-[#0F172A] transition-colors group-hover:text-[#4F46E5]">
                     {service.title}
                   </h3>
-                  <p className="mt-1 text-xs font-semibold text-[#F26A3D]">
+                  <p className="mt-1 text-xs font-semibold text-[#4F46E5]">
                     {service.subtitle}
                   </p>
                 </div>
 
-                <p className="text-sm text-[#626A73] leading-relaxed">
+                <p className="text-sm text-[#475569] leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Deliverables checklist */}
-                <div className="pt-2 border-t border-[#E3DFD6]/70">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#858A91] block mb-2">
+                <div className="pt-3 border-t border-[#CBD5E1]/40">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] block mb-2.5">
                     Key Deliverables
                   </span>
-                  <ul className="space-y-2 text-xs text-[#172C46]">
+                  <ul className="space-y-2 text-xs text-[#0F172A]">
                     {service.deliverables.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <IconCheck className="w-3.5 h-3.5 text-[#F26A3D] shrink-0 mt-0.5" />
+                        <IconCheck className="w-3.5 h-3.5 text-[#4F46E5] shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -96,18 +90,20 @@ export function ServicesSection() {
               </div>
 
               {/* Footer: ideal-for + WhatsApp action */}
-              <div className="pt-5 mt-6 border-t border-[#E3DFD6] space-y-3">
-                <p className="text-[11px] text-[#626A73]">
-                  <strong className="text-[#172C46]">Ideal for:</strong>{" "}
+              <div className="pt-5 mt-6 border-t border-[#CBD5E1]/40 space-y-3">
+                <p className="text-[11px] text-[#64748B]">
+                  <strong className="text-[#0F172A]">Ideal for:</strong>{" "}
                   {service.idealFor}
                 </p>
                 <a
                   href={whatsappServiceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#172C46] group-hover:text-[#F26A3D] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors"
                 >
-                  <IconWhatsApp className="w-4 h-4 text-[#F26A3D]" />
+                  <div className="p-1.5 rounded-lg bg-[#10B981]/10 text-[#10B981] shadow-neu-inset-sm">
+                    <IconWhatsApp className="w-3.5 h-3.5" />
+                  </div>
                   <span>Inquire about this service</span>
                   <IconArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </a>

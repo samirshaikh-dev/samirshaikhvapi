@@ -1,16 +1,43 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Warm Luxury Card component.
- * Follows docs/DESIGN.MD (Pure White surfaces #FFFFFF, #E3DFD6 borders, soft spatial depth)
- * and AVOID.md (no excessive card nesting, intentional visual structure).
+ * Modern Neumorphic Card component.
+ * Supports:
+ * - raised (default): soft dual-shadow tactile plate
+ * - inset: sunken recessed surface
+ * - convex: subtly domed light-reflecting surface
+ * - flat: minimal shadow plate
  */
-export function Card({ as: Tag = "div", className, children, hover = true, ...props }) {
+export function Card({
+  as: Tag = "div",
+  variant = "raised",
+  hover = true,
+  className,
+  children,
+  ...props
+}) {
+  const variantStyles = {
+    raised:
+      "bg-[#EEF2F6] border border-white/80 shadow-neu-card",
+    inset:
+      "bg-[#E8EEF5] border border-[#CBD5E1]/45 shadow-neu-inset",
+    convex:
+      "neu-convex border border-white/85 shadow-neu-card",
+    flat:
+      "bg-[#EEF2F6] border border-white/70 shadow-neu-sm",
+  };
+
+  const hoverStyles =
+    hover && variant === "raised"
+      ? "hover:shadow-neu-lg hover:border-white hover:-translate-y-1 transition-all duration-300"
+      : "";
+
   return (
     <Tag
       className={cn(
-        "rounded-2xl border border-[#E3DFD6] bg-white p-6 sm:p-8 shadow-card transition-all duration-300",
-        hover && "hover:border-[#c9c4b7] hover:shadow-soft",
+        "rounded-3xl p-6 sm:p-8 transition-all duration-300",
+        variantStyles[variant] || variantStyles.raised,
+        hoverStyles,
         className
       )}
       {...props}

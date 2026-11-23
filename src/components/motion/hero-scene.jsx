@@ -8,21 +8,10 @@ import * as THREE from "three";
 /**
  * HeroScene — the authored focal 3D moment for the portfolio hero.
  *
- * An original abstract brand object (NOT the MoncyDev portfolio asset, which is
- * proprietary and must not be reused). It embodies the Warm Luxury palette:
- * a deep midnight knot wrapped by a tangerine wireframe shell, lit softly,
- * floating gently and reacting to pointer + scroll.
- *
- * Accessibility / performance (AI_RULE.md §5, .agents/skills/animate,
- * .agents/skills/accessible-animation):
- * - This canvas is only mounted when motion is allowed. Under
- *   prefers-reduced-motion the caller renders a static fallback instead, so
- *   there is no WebGL loop, no auto-rotation, no vestibular trigger.
- * - Only the GPU does work here; pointer/scroll feed eased targets, never
- *   re-rendering React on every frame.
- * - dpr is capped so mid-range phones are not pushed to full retina cost.
+ * An original abstract brand object embodying the Neumorphic Studio palette:
+ * deep obsidian slate knot wrapped by an electric indigo wireframe shell,
+ * lit with soft directional light and warm amber counter-reflection.
  */
-
 function BrandKnot() {
   const group = useRef();
   const inner = useRef();
@@ -57,38 +46,38 @@ function BrandKnot() {
 
   return (
     <group ref={group}>
-      {/* Tangerine wireframe outer shell — structural, "raw" motif */}
+      {/* Electric Indigo wireframe outer shell — structural motif */}
       <mesh>
         <torusKnotGeometry args={[1.35, 0.42, 220, 32, 2, 3]} />
         <meshBasicMaterial
-          color="#F26A3D"
+          color="#6366F1"
           wireframe
           transparent
-          opacity={0.28}
+          opacity={0.32}
         />
       </mesh>
 
-      {/* Midnight inner knot with a soft organic distort — the mass */}
+      {/* Obsidian slate inner knot with soft organic distort */}
       <mesh ref={inner} castShadow>
         <torusKnotGeometry args={[1.1, 0.5, 200, 32, 2, 3]} />
         <MeshDistortMaterial
-          color="#172C46"
-          emissive="#22406a"
-          emissiveIntensity={0.35}
+          color="#1E293B"
+          emissive="#312E81"
+          emissiveIntensity={0.4}
           roughness={0.25}
-          metalness={0.85}
-          distort={0.35}
-          speed={1.6}
+          metalness={0.8}
+          distort={0.32}
+          speed={1.5}
         />
       </mesh>
 
-      {/* Warm ivory accent ring — luxury counterpoint */}
+      {/* Sunset Amber accent ring — warm focal counterpoint */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[2.0, 0.06, 16, 100]} />
+        <torusGeometry args={[2.0, 0.05, 16, 100]} />
         <meshStandardMaterial
-          color="#E9E5F5"
-          roughness={0.4}
-          metalness={0.3}
+          color="#F97316"
+          roughness={0.35}
+          metalness={0.5}
         />
       </mesh>
     </group>
@@ -96,7 +85,6 @@ function BrandKnot() {
 }
 
 export default function HeroScene({ reduced = false, active = true }) {
-  // The caller decides whether to mount this at all; this guard is a safety net.
   if (reduced) return null;
 
   return (
@@ -107,10 +95,10 @@ export default function HeroScene({ reduced = false, active = true }) {
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
     >
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[4, 6, 5]} intensity={1.5} castShadow />
-      <directionalLight position={[-5, -2, -3]} intensity={0.6} color="#E9E5F5" />
-      <pointLight position={[0, 3, 4]} intensity={0.8} color="#F26A3D" />
+      <ambientLight intensity={0.75} />
+      <directionalLight position={[4, 6, 5]} intensity={1.6} castShadow />
+      <directionalLight position={[-5, -2, -3]} intensity={0.6} color="#EEF2F6" />
+      <pointLight position={[0, 3, 4]} intensity={0.9} color="#4F46E5" />
 
       <Float speed={1.1} rotationIntensity={0.2} floatIntensity={0.6}>
         <BrandKnot />
@@ -118,11 +106,11 @@ export default function HeroScene({ reduced = false, active = true }) {
 
       <ContactShadows
         position={[0, -2.4, 0]}
-        opacity={0.35}
+        opacity={0.38}
         scale={8}
-        blur={2.6}
+        blur={2.5}
         far={4}
-        color="#172C46"
+        color="#8B9DB4"
       />
     </Canvas>
   );

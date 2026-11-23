@@ -12,8 +12,6 @@ import {
   IconPhone,
   IconMail,
   IconMapPin,
-  IconCheck,
-  IconSparkles,
 } from "@/components/ui/icons";
 
 export function ContactSection() {
@@ -77,26 +75,26 @@ export function ContactSection() {
         {/* Left Column: Direct WhatsApp & Contact Channels */}
         <div className="lg:col-span-5 space-y-6">
           {/* Primary WhatsApp Card */}
-          <div className="rounded-3xl border border-[#F26A3D]/40 bg-white p-7 sm:p-8 shadow-soft space-y-5">
+          <div className="rounded-3xl border border-white/85 bg-[#EEF2F6] p-7 sm:p-8 shadow-neu-floating space-y-5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#F26A3D]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#10B981]">
                 Recommended Channel
               </span>
-              <Badge variant="tangerine">Fastest Reply</Badge>
+              <Badge variant="whatsapp">Fastest Reply</Badge>
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-[#172C46]">
+              <h3 className="text-2xl font-extrabold text-[#0F172A]">
                 Chat on WhatsApp
               </h3>
-              <p className="text-sm text-[#626A73] leading-relaxed">
+              <p className="text-sm text-[#475569] leading-relaxed">
                 Connect directly with Samir for a quick conversation regarding requirements, feasibility, and pricing.
               </p>
             </div>
 
-            <div className="rounded-xl bg-[#F6F2E9] p-4 border border-[#E3DFD6] space-y-1 text-xs">
-              <span className="text-[#858A91] block">Direct Number</span>
-              <span className="text-base font-bold text-[#172C46]">
+            <div className="rounded-2xl bg-[#E8EEF5] p-4 border border-[#CBD5E1]/40 shadow-neu-inset-sm space-y-1 text-xs">
+              <span className="text-[#64748B] block font-semibold">Direct Number</span>
+              <span className="text-base font-bold text-[#0F172A]">
                 {siteConfig.phoneFormatted}
               </span>
             </div>
@@ -107,51 +105,51 @@ export function ContactSection() {
               rel="noopener noreferrer"
               className="block w-full"
             >
-              <Button variant="primary" size="lg" className="w-full gap-2.5 font-bold shadow-md">
-                <IconWhatsApp className="w-5 h-5 text-[#172C46]" />
+              <Button variant="whatsapp" size="lg" className="w-full gap-2.5 font-bold">
+                <IconWhatsApp className="w-5 h-5 text-white" />
                 <span>Open WhatsApp Chat</span>
               </Button>
             </a>
           </div>
 
           {/* Secondary Direct Channels */}
-          <Card className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#172C46]">
+          <Card variant="raised" className="space-y-4">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A]">
               Other Direct Channels
             </h4>
 
             <div className="space-y-3 text-sm">
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-3 text-[#172C46] hover:text-[#F26A3D] transition-colors p-2 rounded-lg hover:bg-[#F6F2E9]"
+                className="flex items-center gap-3 text-[#0F172A] hover:text-[#4F46E5] transition-all p-3 rounded-2xl bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:shadow-neu active:shadow-neu-pressed"
               >
-                <div className="rounded-lg bg-[#E9E5F5] p-2 text-[#172C46]">
-                  <IconMail className="w-4 h-4 text-[#F26A3D]" />
+                <div className="rounded-xl bg-[#E8EEF5] p-2 text-[#4F46E5] shadow-neu-inset-sm border border-[#CBD5E1]/40">
+                  <IconMail className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block text-xs text-[#858A91]">Email Inquiries</span>
+                  <span className="block text-xs text-[#64748B] font-medium">Email Inquiries</span>
                   <span className="font-semibold">{siteConfig.email}</span>
                 </div>
               </a>
 
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="flex items-center gap-3 text-[#172C46] hover:text-[#F26A3D] transition-colors p-2 rounded-lg hover:bg-[#F6F2E9]"
+                className="flex items-center gap-3 text-[#0F172A] hover:text-[#4F46E5] transition-all p-3 rounded-2xl bg-[#EEF2F6] shadow-neu-sm border border-white/80 hover:shadow-neu active:shadow-neu-pressed"
               >
-                <div className="rounded-lg bg-[#E9E5F5] p-2 text-[#172C46]">
-                  <IconPhone className="w-4 h-4 text-[#F26A3D]" />
+                <div className="rounded-xl bg-[#E8EEF5] p-2 text-[#4F46E5] shadow-neu-inset-sm border border-[#CBD5E1]/40">
+                  <IconPhone className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block text-xs text-[#858A91]">Direct Phone Call</span>
+                  <span className="block text-xs text-[#64748B] font-medium">Direct Phone Call</span>
                   <span className="font-semibold">{siteConfig.phoneFormatted}</span>
                 </div>
               </a>
             </div>
 
             {/* Geographic Coverage */}
-            <div className="pt-3 border-t border-[#E3DFD6] space-y-1.5 text-xs text-[#626A73]">
-              <span className="font-bold text-[#172C46] flex items-center gap-1.5">
-                <IconMapPin className="w-3.5 h-3.5 text-[#F26A3D]" />
+            <div className="pt-3 border-t border-[#CBD5E1]/40 space-y-1.5 text-xs text-[#475569]">
+              <span className="font-bold text-[#0F172A] flex items-center gap-1.5">
+                <IconMapPin className="w-3.5 h-3.5 text-[#4F46E5]" />
                 Service Areas:
               </span>
               <p>
@@ -163,12 +161,12 @@ export function ContactSection() {
 
         {/* Right Column: Project Inquiry Form */}
         <div className="lg:col-span-7">
-          <Card className="space-y-6">
+          <Card variant="raised" className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold text-[#172C46]">
+              <h3 className="text-2xl font-extrabold text-[#0F172A]">
                 Send a Project Inquiry
               </h3>
-              <p className="mt-1 text-sm text-[#626A73]">
+              <p className="mt-1 text-sm text-[#475569]">
                 Fill out the details below and I will get back to you within 24 hours.
               </p>
             </div>
@@ -178,7 +176,7 @@ export function ContactSection() {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="contact-name"
-                    className="block text-xs font-bold uppercase tracking-wider text-[#172C46]"
+                    className="block text-xs font-bold uppercase tracking-wider text-[#0F172A]"
                   >
                     Your Name *
                   </label>
@@ -191,14 +189,14 @@ export function ContactSection() {
                       setFormState({ ...formState, name: e.target.value })
                     }
                     placeholder="e.g. Rajesh Patel"
-                    className="w-full rounded-xl border border-[#E3DFD6] bg-[#F6F2E9]/60 px-4 py-2.5 text-sm text-[#172C46] placeholder-[#858A91] focus:bg-white focus:border-[#F26A3D] focus:outline-none transition-colors"
+                    className="w-full rounded-2xl border border-[#CBD5E1]/50 bg-[#E8EEF5] px-4 py-3 text-sm text-[#0F172A] placeholder-[#94A3B8] shadow-neu-inset focus:bg-[#EEF2F6] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]/20 transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label
                     htmlFor="contact-email"
-                    className="block text-xs font-bold uppercase tracking-wider text-[#172C46]"
+                    className="block text-xs font-bold uppercase tracking-wider text-[#0F172A]"
                   >
                     Your Email Address *
                   </label>
@@ -211,7 +209,7 @@ export function ContactSection() {
                       setFormState({ ...formState, email: e.target.value })
                     }
                     placeholder="rajesh@company.com"
-                    className="w-full rounded-xl border border-[#E3DFD6] bg-[#F6F2E9]/60 px-4 py-2.5 text-sm text-[#172C46] placeholder-[#858A91] focus:bg-white focus:border-[#F26A3D] focus:outline-none transition-colors"
+                    className="w-full rounded-2xl border border-[#CBD5E1]/50 bg-[#E8EEF5] px-4 py-3 text-sm text-[#0F172A] placeholder-[#94A3B8] shadow-neu-inset focus:bg-[#EEF2F6] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]/20 transition-all"
                   />
                 </div>
               </div>
@@ -219,7 +217,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="contact-business-type"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#172C46]"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#0F172A]"
                 >
                   Business / Project Type
                 </label>
@@ -229,7 +227,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormState({ ...formState, businessType: e.target.value })
                   }
-                  className="w-full rounded-xl border border-[#E3DFD6] bg-[#F6F2E9]/60 px-4 py-2.5 text-sm text-[#172C46] focus:bg-white focus:border-[#F26A3D] focus:outline-none transition-colors"
+                  className="w-full rounded-2xl border border-[#CBD5E1]/50 bg-[#E8EEF5] px-4 py-3 text-sm text-[#0F172A] shadow-neu-inset focus:bg-[#EEF2F6] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]/20 transition-all"
                 >
                   <option value="">Select your industry / project requirement</option>
                   <option value="Manufacturing / Industrial Website">
@@ -256,7 +254,7 @@ export function ContactSection() {
               <div className="space-y-1.5">
                 <label
                   htmlFor="contact-message"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#172C46]"
+                  className="block text-xs font-bold uppercase tracking-wider text-[#0F172A]"
                 >
                   How Can I Help Your Business? *
                 </label>
@@ -269,7 +267,7 @@ export function ContactSection() {
                     setFormState({ ...formState, message: e.target.value })
                   }
                   placeholder="Tell me a bit about your business, current website (if any), and what you would like to achieve..."
-                  className="w-full rounded-xl border border-[#E3DFD6] bg-[#F6F2E9]/60 px-4 py-2.5 text-sm text-[#172C46] placeholder-[#858A91] focus:bg-white focus:border-[#F26A3D] focus:outline-none transition-colors"
+                  className="w-full rounded-2xl border border-[#CBD5E1]/50 bg-[#E8EEF5] px-4 py-3 text-sm text-[#0F172A] placeholder-[#94A3B8] shadow-neu-inset focus:bg-[#EEF2F6] focus:border-[#4F46E5] focus:outline-none focus:ring-2 focus:ring-[#4F46E5]/20 transition-all"
                 />
               </div>
 
@@ -278,10 +276,10 @@ export function ContactSection() {
                 <div
                   role="status"
                   aria-live="polite"
-                  className={`p-4 rounded-xl text-xs font-medium ${
+                  className={`p-4 rounded-2xl text-xs font-semibold ${
                     status.state === "success"
-                      ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
-                      : "bg-rose-50 text-rose-800 border border-rose-200"
+                      ? "bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-neu-sm"
+                      : "bg-rose-50 text-rose-800 border border-rose-200 shadow-neu-sm"
                   }`}
                 >
                   {status.message}
@@ -298,7 +296,7 @@ export function ContactSection() {
                 {isSubmitting ? "Sending Inquiry..." : "Submit Project Inquiry"}
               </Button>
 
-              <p className="text-[11px] text-[#858A91] text-center">
+              <p className="text-[11px] text-[#64748B] text-center font-medium">
                 Your details are kept private and never shared.
               </p>
             </form>

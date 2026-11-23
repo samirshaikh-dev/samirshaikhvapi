@@ -1,0 +1,163 @@
+# Task: Website-Wide Neumorphism UI Implementation
+
+Act as a Senior UI/UX Designer and Frontend Engineer specializing in modern design systems.
+
+## Objective
+
+Scan and analyze the entire existing website, understand its current design system, component architecture, layout, and styling, then introduce a cohesive **Neumorphism UI design language** across the website.
+
+The goal is to make the interface feel modern, premium, tactile, clean, and visually consistent — not to blindly apply shadows to every element.
+
+## 1. Audit the Existing Website
+
+Before making changes:
+
+- Scan all pages, routes, and major UI components.
+- Identify the existing color palette, typography, spacing, border radius, and component styles.
+- Review navigation, headers, footers, cards, forms, buttons, inputs, sections, and interactive elements.
+- Identify reusable components and shared styling patterns.
+- Understand the existing responsive breakpoints.
+- Identify visual inconsistencies and opportunities for improvement.
+
+Do not make assumptions about the architecture. Inspect the actual codebase first.
+
+## 2. Introduce Neumorphism Design Language
+
+Implement a refined, modern Neumorphic design system featuring:
+
+- Soft UI surfaces.
+- Subtle dual-direction shadows.
+- Gentle raised and inset effects.
+- Smooth rounded corners.
+- Low-contrast surface transitions.
+- Subtle depth and tactile interaction states.
+- Clean visual hierarchy.
+- Minimal and purposeful decoration.
+
+Use realistic light and shadow relationships to create depth without making the interface look overly embossed.
+
+## 3. Apply Neumorphism Across Components
+
+Review and update the following wherever appropriate:
+
+**Navigation**
+- Soft-surface navigation elements.
+- Subtle active states.
+- Refined hover interactions.
+
+**Buttons**
+- Raised neumorphic buttons.
+- Pressed/inset states on click.
+- Clear primary and secondary button hierarchy.
+- Accessible contrast and visible focus states.
+
+**Cards and Containers**
+- Soft raised surfaces.
+- Consistent shadow depth.
+- Refined border radius.
+- Proper spacing and visual grouping.
+
+**Forms and Inputs**
+- Subtle inset input fields.
+- Clear focus and validation states.
+- Accessible placeholders and labels.
+- Consistent interaction feedback.
+
+**Sections**
+- Create visual depth through subtle surface variations.
+- Maintain clear separation between content sections.
+- Avoid excessive shadows and unnecessary decorative elements.
+
+**Interactive Elements**
+- Smooth hover, active, focus, and disabled states.
+- Subtle transitions.
+- Consistent tactile feedback.
+
+## 4. Establish a Reusable Design System
+
+Create or update centralized design tokens for:
+
+- Background and surface colors.
+- Primary and secondary text colors.
+- Raised shadows.
+- Inset shadows.
+- Border radius.
+- Spacing.
+- Transition durations.
+- Focus rings.
+- Interactive states.
+
+Use CSS variables or the project's existing styling architecture.
+
+Avoid duplicating shadow and surface definitions across individual components.
+
+## 5. Visual Design Guidelines
+
+Follow these principles:
+
+- Premium, minimal, and modern appearance.
+- Soft shadows instead of harsh drop shadows.
+- Consistent lighting direction.
+- Balanced contrast between surfaces and backgrounds.
+- Generous whitespace.
+- Clear typography hierarchy.
+- Consistent component dimensions.
+- Avoid excessive rounded pills and oversized borders.
+- Avoid making every element look like a separate floating card.
+- Preserve the website's original brand identity.
+
+**Important:** Neumorphism should enhance usability, not compromise it. Maintain sufficient text contrast, recognizable controls, keyboard accessibility, and visible focus indicators.
+
+## 6. Responsive Implementation
+
+Ensure the updated design works consistently across:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile.
+
+Pay particular attention to:
+- Shadow intensity on smaller screens.
+- Card spacing and stacking.
+- Button touch targets.
+- Navigation usability.
+- Form accessibility.
+- Horizontal overflow.
+
+## 7. Performance and Code Quality
+
+- Reuse existing components wherever possible.
+- Avoid unnecessary dependencies.
+- Avoid excessive CSS filters and expensive effects.
+- Preserve existing functionality and business logic.
+- Maintain semantic HTML.
+- Respect `prefers-reduced-motion`.
+- Avoid introducing layout shifts.
+
+## 8. Validation
+
+After implementation:
+
+- Review every page and route.
+- Check for inconsistent shadows and surface colors.
+- Verify all hover, active, focus, and disabled states.
+- Test responsive layouts.
+- Check existing functionality.
+- Remove obsolete styling where appropriate.
+- Ensure the design feels cohesive across the entire website.
+
+## Expected Outcome
+
+Deliver a complete website-wide Neumorphism UI transformation that feels intentionally designed rather than mechanically styled.
+
+The final website should look:
+
+- Premium and polished.
+- Soft and tactile.
+- Modern and minimal.
+- Consistent across every page.
+- Fully responsive.
+- Accessible and production-ready.
+
+**Execution Rule:** First inspect the existing website and codebase, then establish the design direction, and finally implement it systematically. Do not stop after producing an audit or recommendations. Complete the actual implementation.

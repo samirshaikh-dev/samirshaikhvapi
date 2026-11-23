@@ -1,22 +1,49 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Warm Luxury Badge component.
- * Uses Soft Lavender (#E9E5F5), Warm Ivory (#F6F2E9), or subtle borders per docs/DESIGN.MD.
+ * Modern Neumorphic Tactile Badge component.
+ * Embossed or debossed tactile tags with crisp readability.
  */
-export function Badge({ variant = "lavender", className, children, ...props }) {
+export function Badge({
+  variant = "slate",
+  className,
+  children,
+  ...props
+}) {
   const variants = {
-    lavender: "bg-[#E9E5F5] text-[#172C46] border border-[#d6cee8]",
-    ivory: "bg-[#EEEAE1] text-[#172C46] border border-[#E3DFD6]",
-    tangerine: "bg-[#F26A3D]/10 text-[#F26A3D] border border-[#F26A3D]/25 font-semibold",
-    midnight: "bg-[#172C46] text-white border border-[#172C46]",
+    // Slate / Neutral Embossed
+    slate:
+      "bg-[#EEF2F6] text-[#334155] border border-white/90 shadow-neu-sm",
+    // Indigo Primary Inset
+    indigo:
+      "bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/20 shadow-neu-inset-sm font-semibold",
+    primary:
+      "bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/20 shadow-neu-inset-sm font-semibold",
+    // Warm / Amber / Coral Inset
+    warm:
+      "bg-[#F97316]/10 text-[#EA580C] border border-[#F97316]/25 shadow-neu-inset-sm font-semibold",
+    tangerine:
+      "bg-[#F97316]/10 text-[#EA580C] border border-[#F97316]/25 shadow-neu-inset-sm font-semibold",
+    // Emerald / WhatsApp Inset
+    whatsapp:
+      "bg-[#10B981]/10 text-[#059669] border border-[#10B981]/25 shadow-neu-inset-sm font-semibold",
+    // Sunken / Inset Neutral
+    inset:
+      "bg-[#E8EEF5] text-[#475569] border border-[#CBD5E1]/40 shadow-neu-inset-sm",
+    // Legacy support for ivory / lavender
+    ivory:
+      "bg-[#EEF2F6] text-[#334155] border border-white/90 shadow-neu-sm",
+    lavender:
+      "bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/20 shadow-neu-inset-sm font-semibold",
+    midnight:
+      "bg-[#0F172A] text-white border border-[#1E293B] shadow-neu-sm",
   };
 
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium tracking-wide",
-        variants[variant] || variants.lavender,
+        "inline-flex items-center gap-1.5 rounded-xl px-3 py-1 text-xs font-medium tracking-wide",
+        variants[variant] || variants.slate,
         className
       )}
       {...props}

@@ -52,7 +52,7 @@ export function Reveal({
       : { autoAlpha: 0, y };
 
     const toVars = isFadeOnly
-      ? { autoAlpha: 1, duration: 0.3, delay, ease: "power1.out" }
+      ? { autoAlpha: 1, duration: 0.2, delay, ease: "power1.out" }
       : { autoAlpha: 1, y: 0, duration: 0.7, delay, ease: "power3.out" };
 
     const ctx = gsap.context(() => {
@@ -117,7 +117,7 @@ export function RevealGroup({
           gsap.to(batch, {
             autoAlpha: 1,
             ...(isFadeOnly ? {} : { y: 0 }),
-            duration: isFadeOnly ? 0.3 : 0.6,
+            duration: isFadeOnly ? 0.2 : 0.6,
             stagger,
             ease: "power3.out",
             overwrite: true,
