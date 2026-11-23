@@ -1,92 +1,134 @@
 /**
- * Services offered by Samir Shaikh.
- * Source of truth: docs/PROJECT-CONTEXT.md §3 and docs/TARGET-CUSTOMER.md.
- * Customer-centric framing: problem -> solution -> business gain.
+ * Client-Focused Services & Solutions.
+ * Source: convert.txt §5 ("Service Positioning") & §3 ("Messaging Transformation").
+ * Structure: Problem -> Solution -> Deliverables -> Business Benefit -> Action.
  */
 
 export const servicesData = [
   {
     id: "business-website",
-    title: "Business Website Development",
-    subtitle: "Turn online visitors into paying customers",
+    title: "Business Websites",
+    subtitle: "Establish credibility & turn visitors into paying customers",
+    problemSolved:
+      "Most local business websites fail to produce leads because they are hard to navigate, look dated, and lack a quick way for interested customers to reach out.",
     description:
-      "Fast, credible, and modern company websites crafted to represent your business professionally. Clean layouts, clear services presentation, and instant WhatsApp inquiry paths.",
+      "Fast, credible, and modern company websites crafted to convert visitors into inquiries. Featuring clear service presentations, instant WhatsApp inquiry integration, and sub-second mobile loading.",
     deliverables: [
-      "Mobile-first responsive design for all screen sizes",
-      "Clear service catalogs and company story",
-      "Direct WhatsApp and call click-to-connect buttons",
-      "Clean Google Search Console and local SEO foundation",
+      "Mobile-first responsive design for all smartphone screens",
+      "Clear service offerings and structured value propositions",
+      "One-tap WhatsApp and click-to-call inquiry integrations",
+      "Foundational on-page local SEO and Google Search Console setup",
     ],
+    businessBenefit: "Turn online searches into direct phone calls, WhatsApp messages, and new local clients.",
     idealFor: "Local businesses, clinics, service providers, retail stores, professional firms",
+    ctaText: "Get a Website for Your Business",
   },
   {
     id: "industrial-website",
-    title: "Industrial & Manufacturing Websites",
-    subtitle: "Built specifically for Vapi GIDC manufacturers & exporters",
+    title: "Industrial & Manufacturing Catalogues",
+    subtitle: "Digital storefronts built for Vapi GIDC manufacturers & exporters",
+    problemSolved:
+      "Manufacturing companies often share messy PDF brochures over WhatsApp or rely on outdated websites that don't allow buyers to search product sizes, machinery capacity, or request quotations.",
     description:
-      "Digital storefronts tailored for factories, chemical processors, packaging units, and industrial suppliers. Showcase technical capabilities, machine capacity, and generate structured quotation inquiries.",
+      "Engineered specifically for factories, chemical processors, engineering workshops, and industrial suppliers in Vapi GIDC. Showcase specifications, machine capabilities, and generate structured RFQ leads.",
     deliverables: [
       "Structured industrial product and equipment catalogues",
-      "One-click Request for Quotation (RFQ) forms",
-      "Technical specifications and downloadable PDF brochures",
-      "Industrial directory and search visibility in South Gujarat",
+      "One-click Request for Quotation (RFQ) inquiry workflows",
+      "Downloadable technical specification sheets and certifications",
+      "Local and regional industrial search discoverability",
     ],
-    idealFor: "Manufacturers, engineering workshops, packaging firms, chemical units, suppliers",
+    businessBenefit: "Eliminate manual PDF brochure sharing and capture high-value commercial purchase orders.",
+    idealFor: "Manufacturers, engineering workshops, packaging units, chemical plants, industrial suppliers",
+    ctaText: "Build My Industrial Catalogue",
   },
   {
     id: "website-redesign",
-    title: "Website Redesign & Modernization",
-    subtitle: "Revitalize outdated, slow, or broken websites",
+    title: "Website Redesign & Speed Optimization",
+    subtitle: "Turn outdated, slow websites into modern, customer-friendly experiences",
+    problemSolved:
+      "Old websites built years ago suffer from broken layouts on modern phones, take 5+ seconds to load, and drive away potential buyers before they even read your services.",
     description:
-      "Upgrade legacy websites built years ago into fast, mobile-friendly experiences. We preserve your existing rankings while dramatically improving visual credibility and conversion rates.",
+      "Complete visual and architectural modernizations. We rebuild your site on modern Next.js 16 for instant sub-second loading while preserving your existing domain authority, content, and Google rankings.",
     deliverables: [
-      "Complete visual refresh aligned with modern luxury standards",
-      "Under-1-second mobile load time optimization",
-      "Fix mobile breakage, horizontal scroll bugs, and broken links",
-      "Preserve existing SEO rankings and domain authority",
+      "Complete visual refresh with tactile, modern aesthetic",
+      "Under-1-second mobile load time on local 4G/5G networks",
+      "Resolution of broken mobile layouts, horizontal shifts, and broken links",
+      "Preservation of existing SEO rankings and domain age",
     ],
-    idealFor: "Businesses with an outdated site looking to upgrade their brand image",
-  },
-  {
-    id: "ecommerce-development",
-    title: "E-Commerce & Digital Storefronts",
-    subtitle: "Showcase products with frictionless customer ordering",
-    description:
-      "Modern digital catalogs and web storefronts that make product browsing effortless for customers. Support direct WhatsApp orders, quotation requests, or full payment checkout.",
-    deliverables: [
-      "High-density product catalogs with multi-category filters",
-      "WhatsApp Cart & Direct Order inquiry workflows",
-      "Fast product image optimization and mobile checkout",
-      "Inventory management & product administration",
-    ],
-    idealFor: "Wholesalers, distributors, local retailers, automotive parts sellers",
+    businessBenefit: "Restore brand authority and prevent losing valuable clients to modern competitors.",
+    idealFor: "Businesses with an outdated, sluggish site looking to modernize their image",
+    ctaText: "Request Website Modernization",
   },
   {
     id: "custom-web-apps",
-    title: "Custom Web Applications & Dashboards",
-    subtitle: "Software tailored to your exact business operations",
+    title: "Custom Web Applications & Portals",
+    subtitle: "Digitize workflows & build software around how you actually operate",
+    problemSolved:
+      "Spreadsheets and paper logs cause missed deadlines, lost records, and calculation mistakes, while commercial off-the-shelf software is rigid and forces you into high monthly fees.",
     description:
-      "Move away from messy spreadsheets and manual notebooks. We build secure internal tools, booking platforms, quotation generators, and customer portals tailored to how you operate.",
+      "Custom internal tools, booking platforms, quotation generators, and customer portals built specifically around your proven business operations. Simple, secure, and accessible from anywhere.",
     deliverables: [
-      "Secure role-based access for staff and managers",
-      "Interactive data tables, filters, and reports",
-      "Automated quotation and invoice generation",
-      "Cloud backend with real-time database updates",
+      "Role-based access control (RBAC) for staff, managers, and clients",
+      "Real-time database updates and automated document/quote generation",
+      "Interactive data filtering, inventory status, and exportable reports",
+      "Cloud-hosted backend with automatic backups and zero maintenance headaches",
     ],
-    idealFor: "Growing businesses, event organizers, workshops, logistics providers",
+    businessBenefit: "Save dozens of hours per week, prevent operational errors, and streamline team coordination.",
+    idealFor: "Growing businesses, event organizers, workshops, logistics providers, distributors",
+    ctaText: "Build My Business Application",
   },
   {
     id: "ai-solutions",
-    title: "AI Assistants & Workflow Automation",
-    subtitle: "Smart 24/7 customer assistance that knows your business",
+    title: "24/7 AI Chatbots & Customer Assistants",
+    subtitle: "Automate customer support & provide instant answers day and night",
+    problemSolved:
+      "Customers expect immediate answers. When inquiries arrive late in the evening or during peak work hours, delayed replies cause prospects to move to competitors.",
     description:
-      "Give your customers an intelligent website assistant that answers questions about your products, working hours, and services instantly — even when your office is closed.",
+      "Deploy an intelligent website assistant trained strictly on your business services, pricing guidelines, working hours, and FAQs. It handles inquiries around the clock and forwards hot leads straight to WhatsApp.",
     deliverables: [
-      "Website AI assistant grounded in your business data",
-      "Automatic customer inquiry triage and priority notification",
-      "WhatsApp dispatch and follow-up message automation",
-      "Zero hallucinations — grounded answers with citations",
+      "Website AI assistant grounded in your business details",
+      "Instant answers to common questions about services, timings, and quotes",
+      "Automatic lead capture and real-time WhatsApp alert dispatch",
+      "Anti-hallucination guardrails: only provides verified information",
     ],
-    idealFor: "Healthcare clinics, customer support teams, busy business owners",
+    businessBenefit: "Engage prospects 24/7 without hiring extra support staff or missing after-hours leads.",
+    idealFor: "Healthcare clinics, service businesses, e-commerce stores, busy business owners",
+    ctaText: "Automate My Customer Support",
+  },
+  {
+    id: "ai-knowledge-rag",
+    title: "Custom AI Knowledge Bases (RAG)",
+    subtitle: "Give your team & clients verified answers from your business documents",
+    problemSolved:
+      "Finding information buried inside dozens of company PDFs, product manuals, technical guides, and internal policy sheets takes extensive manual effort.",
+    description:
+      "Advanced retrieval-augmented generation (RAG) that ingests your company's documents, internal policies, and technical catalogues to provide accurate, citation-backed answers with zero guesswork.",
+    deliverables: [
+      "Semantic vector search over company documents and manuals",
+      "Accurate answers with direct source citations from your files",
+      "Interactive knowledge retrieval for internal teams or customer self-service",
+      "Secure vector database without exposing proprietary data externally",
+    ],
+    businessBenefit: "Empower staff and clients to get instant, verified answers from your own knowledge base.",
+    idealFor: "Industrial suppliers, technical teams, healthcare groups, legal & corporate offices",
+    ctaText: "Explore AI Knowledge Solutions",
+  },
+  {
+    id: "backend-automation",
+    title: "Backend & Workflow Automation",
+    subtitle: "Connect the tools your business already uses (WhatsApp, Sheets, CRM)",
+    problemSolved:
+      "Copy-pasting data between WhatsApp messages, Google Sheets, email inquiries, and payment systems consumes valuable staff time and creates data mismatches.",
+    description:
+      "Automated integration pipelines that connect your website with WhatsApp dispatch, Google Sheets synchronization, customer follow-up alerts, and notification systems.",
+    deliverables: [
+      "Automated WhatsApp message notifications upon form submissions",
+      "Two-way synchronization with Google Sheets for inquiry tracking",
+      "Reliable API endpoints with error logging and monitoring",
+      "Fast, dependable background processing without manual intervention",
+    ],
+    businessBenefit: "Automate repetitive data transfers so your staff can focus on fulfilling client work.",
+    idealFor: "Local retailers, event companies, campaign organizers, expanding businesses",
+    ctaText: "Automate My Business Workflows",
   },
 ];

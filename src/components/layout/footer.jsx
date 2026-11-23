@@ -34,8 +34,13 @@ export function Footer() {
             </p>
             <ul className="space-y-2 text-sm text-[#475569]">
               <li>
+                <Link href="#problems" className="hover:text-[#4F46E5] transition-colors">
+                  Problems We Solve
+                </Link>
+              </li>
+              <li>
                 <Link href="#services" className="hover:text-[#4F46E5] transition-colors">
-                  Services Offered
+                  Solutions & Services
                 </Link>
               </li>
               <li>
@@ -45,17 +50,17 @@ export function Footer() {
               </li>
               <li>
                 <Link href="#projects" className="hover:text-[#4F46E5] transition-colors">
-                  Selected Work
+                  Selected Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="#about" className="hover:text-[#4F46E5] transition-colors">
+                  Why Work With Me
                 </Link>
               </li>
               <li>
                 <Link href="#process" className="hover:text-[#4F46E5] transition-colors">
                   How We Work
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="hover:text-[#4F46E5] transition-colors">
-                  About Samir
                 </Link>
               </li>
               <li>

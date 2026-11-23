@@ -6,91 +6,92 @@ import { experienceData, educationData } from "@/data/experience";
 import {
   IconCheck,
   IconArrowUpRight,
+  IconMapPin,
+  IconShieldCheck,
 } from "@/components/ui/icons";
 
 export function AboutSection() {
   return (
     <Section
       id="about"
-      index="05"
-      total="07"
-      badge="About Samir"
-      title="A Better Digital Presence for Your Business"
-      description="Working directly with an independent digital developer gives your business focused attention, direct communication, and solutions built specifically for your needs."
+      badge="Why Work With Me"
+      title="A Direct Technology Partner for Your Business"
+      description="Building high-performance software shouldn't require navigating agency bureaucracy, junior account managers, or inflated retainers. Working directly with an independent developer gives your business speed, clarity, and focused attention."
     >
-      <div className="grid gap-10 lg:grid-cols-12 items-start">
-        {/* Left Column: Personal Narrative & Approach */}
+      <div id="why-me" className="grid gap-10 lg:grid-cols-12 items-start">
+        {/* Left Column: Client Trust Pillars */}
         <div className="lg:col-span-7 space-y-6">
           <div className="space-y-4 text-base text-[#475569] leading-relaxed">
             <p>
-              I&apos;m <strong className="text-[#0F172A]">Samir Shaikh</strong>, an independent developer based in <strong className="text-[#0F172A]">Vapi, Gujarat</strong>. I work with business owners across South Gujarat to turn everyday operations into clean, professional digital experiences that attract more clients.
+              I&apos;m <strong className="text-[#0F172A]">Samir Shaikh</strong>, an independent developer and digital solutions partner based in <strong className="text-[#0F172A]">Vapi, Gujarat</strong>. I work with business owners across South Gujarat to turn daily operational challenges into clean, high-performance digital tools that attract more clients.
             </p>
             <p>
-              Many local businesses in Vapi GIDC, clinics, and service providers have either never had a website or are stuck with an outdated, broken template that does not reflect their true quality. My focus is combining modern design aesthetics with practical business utility — ensuring your website loads instantly, presents your products clearly, and makes contacting you as simple as a single WhatsApp tap.
+              When you hire an agency, your project is often handed off to junior contractors while you pay for senior overhead. When you work with me, you communicate directly with the engineer who architects, designs, and codes your application — resulting in faster delivery, cleaner code, and direct accountability.
             </p>
           </div>
 
-          {/* Key Advantages of Working Together */}
-          <div className="rounded-3xl border border-white/85 bg-[#EEF2F6] p-7 space-y-4 shadow-neu-card">
+          {/* Key Trust Pillars */}
+          <div className="rounded-3xl border border-white/85 bg-[#EEF2F6] p-7 space-y-5 shadow-neu-card">
             <h3 className="text-base font-bold text-[#0F172A]">
-              Why Work With An Independent Developer?
+              How Working With Me Protects Your Project:
             </h3>
 
             <div className="grid sm:grid-cols-2 gap-4 text-xs text-[#0F172A]">
-              <div className="space-y-1">
+              <div className="space-y-1 rounded-2xl bg-[#E8EEF5] p-3.5 border border-[#CBD5E1]/40 shadow-neu-inset-sm">
                 <span className="font-bold flex items-center gap-1.5 text-[#0F172A]">
-                  <IconCheck className="w-4 h-4 text-[#4F46E5]" />
+                  <IconCheck className="w-4 h-4 text-[#10B981]" />
                   Direct Communication
                 </span>
                 <p className="text-[#475569] pl-5.5">
-                  You speak directly with the developer building your site. No account managers or miscommunications.
+                  You talk directly to the developer building your software. Zero miscommunication, fast decisions, and direct phone/WhatsApp access.
                 </p>
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-1 rounded-2xl bg-[#E8EEF5] p-3.5 border border-[#CBD5E1]/40 shadow-neu-inset-sm">
                 <span className="font-bold flex items-center gap-1.5 text-[#0F172A]">
-                  <IconCheck className="w-4 h-4 text-[#4F46E5]" />
+                  <IconCheck className="w-4 h-4 text-[#10B981]" />
                   Local Vapi Availability
                 </span>
                 <p className="text-[#475569] pl-5.5">
-                  Available for in-person discussions across Vapi, Dungra, Pardi, Sarigam, Silvassa, and Daman.
+                  Available for in-person meetings at your office or factory across Vapi GIDC, Dungra, Pardi, Sarigam, Silvassa, and Daman.
                 </p>
               </div>
 
-              <div className="space-y-1">
-                <span className="font-bold flex items-center gap-1.5 text-[#0F172A]">
-                  <IconCheck className="w-4 h-4 text-[#4F46E5]" />
-                  No Agency Bloat
-                </span>
+              <div className="space-y-1 rounded-2xl bg-[#E8EEF5] p-3.5 border border-[#CBD5E1]/40 shadow-neu-inset-sm">
+                <span className="font-bold flex items-center gap-1.5 text-[#10B981]" />
+                <span className="font-bold">No Agency Bloat</span>
                 <p className="text-[#475569] pl-5.5">
-                  High-end engineering without unnecessary overhead fees or sluggish enterprise timelines.
+                  Transparent, fixed-price project quotes without high enterprise retainers, account executive markups, or hidden hourly overages.
                 </p>
               </div>
 
-              <div className="space-y-1">
-                <span className="font-bold flex items-center gap-1.5 text-[#0F172A]">
-                  <IconCheck className="w-4 h-4 text-[#4F46E5]" />
-                  Modern Tech Standards
-                </span>
+              <div className="space-y-1 rounded-2xl bg-[#E8EEF5] p-3.5 border border-[#CBD5E1]/40 shadow-neu-inset-sm">
+                <span className="font-bold flex items-center gap-1.5 text-[#10B981]" />
+                <span className="font-bold">Proven Architecture</span>
                 <p className="text-[#475569] pl-5.5">
-                  Built on modern Next.js 16 and React 19 for industry-grade reliability, speed, and security.
+                  Built on modern Next.js 16 and React 19 standards for sub-second mobile loading, high security, and long-term maintainability.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Engineering Credibility & Background */}
+        {/* Right Column: Engineering Credibility as Proof */}
         <div className="lg:col-span-5 space-y-6">
           <Card variant="raised" className="space-y-5">
             <div className="flex items-center justify-between pb-3.5 border-b border-[#CBD5E1]/40">
-              <h3 className="text-base font-bold text-[#0F172A]">
-                Professional Background
-              </h3>
+              <div>
+                <h3 className="text-base font-bold text-[#0F172A]">
+                  Verified Engineering Track Record
+                </h3>
+                <span className="text-[11px] text-[#64748B]">
+                  Supporting proof of software delivery
+                </span>
+              </div>
               <Badge variant="inset">Verified</Badge>
             </div>
 
-            {/* Verified Experience from PROJECT-CONTEXT.md §4 */}
+            {/* Experience as proof of technical reliability */}
             <div className="space-y-4">
               {experienceData.map((exp) => (
                 <div key={exp.id} className="space-y-1.5">
@@ -111,7 +112,7 @@ export function AboutSection() {
             {/* Education */}
             <div className="pt-4 border-t border-[#CBD5E1]/40 space-y-1 text-xs">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] block">
-                Education
+                Educational Foundation
               </span>
               <p className="font-bold text-[#0F172A]">
                 {educationData.degree} — {educationData.specialization}
@@ -121,7 +122,7 @@ export function AboutSection() {
               </p>
             </div>
 
-            {/* Link to technical details */}
+            {/* Technical case studies link */}
             <div className="pt-2">
               <a
                 href={siteConfig.links.technicalPortfolio}
@@ -129,7 +130,7 @@ export function AboutSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F172A] hover:text-[#4F46E5] transition-colors"
               >
-                <span>Read in-depth engineering write-ups</span>
+                <span>Read detailed engineering metrics & case studies</span>
                 <IconArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
